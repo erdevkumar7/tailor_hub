@@ -1,0 +1,2322 @@
+@import "http://fonts.googleapis.com/icon?family=Material+Icons";
+
+
+
+@font-face {
+
+    font-family: 'Manrope-Bold';
+
+    src: url('../css/Manrope-Bold.ttf');
+
+}
+
+
+
+
+
+@font-face {
+
+    font-family: 'Manrope-Medium';
+
+    src: url('../css/Manrope-Medium.ttf');
+
+}
+
+
+
+@font-face {
+
+    font-family: 'Nunito-Medium';
+
+    src: url('../css/Nunito-Medium.otf');
+
+}
+
+
+
+@font-face {
+
+    font-family: 'Nunito-Bold';
+
+    src: url('../css/Nunito-Bold.otf');
+
+}
+
+
+
+/* nav-bar css */
+
+nav.navbar {
+
+    padding: 13px 0px;
+
+}
+
+
+
+nav.navbar .sign-up {
+
+    display: flex;
+
+    gap: 8px;
+
+    padding-left: 9px;
+
+    align-items: center;
+
+}
+
+
+
+.navbar .right-section {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+
+}
+
+
+
+.navbar .right-section a.earn-money:hover {
+
+    background-color: #abe3f9;
+
+}
+
+
+
+.navbar .right-section a.earn-money {
+
+    border-radius: 6px;
+
+    padding: 6px 16px 6px 16px;
+
+    background: transparent;
+
+    border: solid 2px #000;
+
+    font-family: 'Manrope-Bold';
+
+    font-size: 14px;
+
+    text-decoration: none;
+
+    color: #000;
+
+}
+
+
+
+nav.navbar .sign-up a:hover {
+
+    color: #abe3f9;
+
+}
+
+
+
+.study-content a:hover {
+
+    color: #abe3f9;
+
+}
+
+
+
+.navbar .right-section p {
+
+    padding-top: 18px;
+
+    font-family: 'Manrope-Bold';
+
+}
+
+
+
+.right-section i.fas {
+
+    padding: 9px;
+
+    background-color: #ABE3F9;
+
+    border-radius: 100%;
+
+    border: solid 1px;
+
+}
+
+
+
+nav.navbar .sign-up a {
+
+    text-decoration: none;
+
+    color: black;
+
+    font-family: 'Manrope-Bold';
+
+    font-size: 14px;
+
+}
+
+
+
+.nav-second-part {
+
+    background-color: #EFFDFF;
+
+}
+
+
+
+.how-we-work a.uplode-doc-btn:hover {
+
+    background-color: #abe3f9;
+
+}
+
+
+
+
+
+.study-content {
+
+    padding: 30px 0px;
+
+    display: flex;
+
+    gap: 30px;
+
+}
+
+
+
+.study-content a {
+
+    color: black;
+
+    text-decoration: none;
+
+    font-family: 'Manrope-Bold';
+
+    font-size: 14px;
+
+}
+
+
+
+.help-for-studies {
+
+    background: url('../images/front_image/help-for-img.png');
+
+    background-size: cover;
+
+    background-repeat: no-repeat;
+
+}
+
+
+
+.studies-content {
+
+    padding: 121px 0;
+
+    padding-bottom: 190px;
+
+}
+
+
+
+.studies-content h1 {
+
+    font-size: 54px;
+
+    font-family: 'Manrope-Bold';
+
+}
+
+
+
+.help-for-studies input#example-search-input {
+
+    border-radius: 25px;
+
+    padding: 24px 42px;
+
+    font-family: 'Manrope-Bold';
+
+    border: none;
+
+}
+
+
+
+.studies-content p {
+
+    font-family: 'Manrope-Medium';
+
+    width: 49%;
+
+    margin: auto;
+
+    padding-top: 10px;
+
+    padding-bottom: 25px;
+
+}
+
+
+
+.how-we-work li.nav-item a {
+
+    text-decoration: none;
+
+    color: black;
+
+    font-family: 'Manrope-Bold';
+
+    font-size: 16px;
+
+}
+
+
+
+.how-we-work ul.nav.nav-tabs.nav-justified {
+
+    border: none;
+
+    background-color: #F5F5F5;
+
+    width: 680px;
+
+    margin: auto;
+
+    border-radius: 30px;
+
+    margin-top: 50px;
+
+}
+
+
+
+.how-we-work .nav-tabs .nav-link {
+
+    margin-bottom: auto;
+
+    border: none;
+
+    border-radius: 30px;
+
+    text-transform: capitalize;
+
+    padding: 25px 0px;
+
+
+
+}
+
+
+
+.how-we-work .nav-tabs .nav-item.show .nav-link,
+
+.nav-tabs .nav-link.active {
+
+    border: none;
+
+    background-color: #ABE3F9;
+
+    text-decoration: none;
+
+    border-radius: 50px;
+
+    color: black;
+
+    font-family: 'Manrope-Bold';
+
+    box-shadow: 0px 2px 2px 1px lightgray;
+
+    padding: 25px 0;
+
+}
+
+
+
+
+
+
+
+.how-we-work .nav-tabs .nav-link:focus,
+
+.nav-tabs .nav-link:hover {
+
+    isolation: isolate;
+
+    border: none;
+
+}
+
+
+
+.how-we-work .nav-link:focus-visible {
+
+    outline: 0;
+
+    box-shadow: none;
+
+}
+
+
+
+.help-for-studies .input-group {
+
+    width: 500px;
+
+    margin: auto;
+
+}
+
+
+
+.help-for-studies .input-group i.fa.fa-search {
+
+    position: absolute;
+
+    z-index: 1;
+
+    margin-left: 18px;
+
+    margin-top: 17px;
+
+    color: #0000005e;
+
+}
+
+
+
+.help-for-studies input#example-search-input:focus {
+
+    z-index: 1;
+
+    border: none;
+
+    box-shadow: none;
+
+}
+
+
+
+.help-for-studies input#example-search-input::placeholder {
+
+    color: #0000005c;
+
+}
+
+
+
+a.about-btn:hover {
+
+    background-color: #abe3f9;
+
+}
+
+
+
+section.card-provide {
+
+    margin-top: -55px;
+
+}
+
+
+
+.right-section i.fas:hover {
+
+    background-color: #404a6b;
+
+    color: #fff;
+
+    border: solid 1px;
+
+}
+
+
+
+.card-provide-inner {
+
+    display: flex;
+
+    gap: 40px;
+
+}
+
+
+
+
+
+section.card-provide .card {
+
+    border-radius: 15px;
+
+    padding: 15px;
+
+    border: none;
+
+    padding-bottom: 0;
+
+}
+
+
+
+.inner-card-part {
+
+    display: flex;
+
+    gap: 15px;
+
+}
+
+
+
+.find-content h3 {
+
+    font-size: 18px;
+
+    color: #000000;
+
+    font-family: 'Manrope-Medium';
+
+}
+
+
+
+.find-content p {
+
+    font-family: 'Manrope-Medium';
+
+    color: #000000;
+
+    font-size: 14px;
+
+}
+
+
+
+section.card-provide .card:hover {
+
+    background-color: #ABE3F9;
+
+}
+
+
+
+/* about css */
+
+.about-welcome-two {
+
+    padding-left: 50px;
+
+}
+
+
+
+.about-us {
+
+    padding: 90px 0px;
+
+}
+
+
+
+.about-us i.material-icons {
+
+    background-color: #ABE3F9;
+
+    border-radius: 100%;
+
+    padding: 3px;
+
+    color: black;
+
+}
+
+
+
+.about-left img {
+
+    width: 100%;
+
+}
+
+
+
+.about-inner-part {
+
+    display: flex;
+
+    gap: 11px;
+
+    align-items: center;
+
+}
+
+
+
+.about-inner-part h6 {
+
+    font-family: 'Manrope-Bold';
+
+    margin-bottom: 0;
+
+}
+
+
+
+.about-right h1 {
+
+    padding: 18px 0;
+
+    font-family: 'Manrope-Bold';
+
+    font-size: 44px;
+
+}
+
+
+
+.about-right ul li {
+
+    list-style: none;
+
+    font-family: 'Manrope-Bold';
+
+    color: #4D5765;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+}
+
+
+
+.about-right p {
+
+    font-family: 'Manrope-Bold';
+
+    color: #4D5765;
+
+}
+
+
+
+.about-right ul {
+
+    padding-left: 0;
+
+    line-height: 3;
+
+    margin-bottom: 35px;
+
+}
+
+
+
+a.about-btn {
+
+    background-color: #0F2239;
+
+    padding: 12px 20px;
+
+    border-radius: 5px;
+
+    text-decoration: none;
+
+    color: #fff;
+
+    font-family: 'Manrope-Bold';
+
+    margin-left: 6px;
+
+}
+
+
+
+a.about-btn img {
+
+    width: 28px;
+
+    margin-top: -4px;
+
+    margin-left: 5px;
+
+}
+
+
+
+
+
+/* how we css */
+
+
+
+
+
+.how-we-work .about-inner-part {
+
+    justify-content: center;
+
+}
+
+
+
+.how-we-work {
+
+    padding: 50px 0;
+
+}
+
+
+
+.how-we-work h1 {
+
+    font-size: 54px;
+
+    font-family: 'Manrope-Bold';
+
+    padding-top: 15px;
+
+}
+
+
+
+a.uplode-doc-btn:hover {
+
+    background-color: #abe3f9;
+
+}
+
+
+
+
+
+.documents-content a:hover {
+
+    background-color: #ABE3F9;
+
+    text-decoration: none;
+
+    padding: 15px;
+
+    border-radius: 30px;
+
+    color: black;
+
+    font-family: 'Manrope-Bold';
+
+    box-shadow: 0px 2px 2px 1px lightgray;
+
+}
+
+
+
+.do-you-have {
+
+    background: url('../images/front_image/how-work-one.png');
+
+    background-repeat: no-repeat;
+
+    background-size: 100% 100%;
+
+    margin: auto;
+
+    margin-top: 60px;
+
+    padding: 95px;
+
+}
+
+
+
+.summaries-content {
+
+    display: flex;
+
+    align-items: center;
+
+}
+
+
+
+.do-you-have.two-part .summaries-content-right {
+
+    text-align: right;
+
+}
+
+
+
+
+
+.summaries-content-left h1 {
+
+    font-size: 44px;
+
+    font-family: 'Manrope-Bold';
+
+    padding-top: 18px;
+
+}
+
+
+
+.summaries-content-left p {
+
+    width: 84%;
+
+    font-size: 16px;
+
+    font-family: 'Manrope-Medium';
+
+    padding-top: 8px;
+
+}
+
+
+
+.do-you-have.two-part p {
+
+    font-family: 'Manrope-Medium';
+
+    text-align: right;
+
+    padding-top: 16px;
+
+    padding-left: 16%;
+
+}
+
+
+
+.do-you-have.two-part {
+
+    background: url('../images/front_image/how-work-two.png');
+
+    background-repeat: no-repeat;
+
+    background-size: 100% 100%;
+
+    margin: auto;
+
+    margin-top: 60px;
+
+    padding: 95px;
+
+}
+
+
+
+a.uplode-doc-btn:hover {
+
+    background-color: #abe3f9;
+
+}
+
+
+
+.gradenzy-content .study-inner-content a button:hover {
+
+    background-color: #abe3f9;
+
+}
+
+
+
+.do-you-have.two-part h1 {
+
+    text-align: right;
+
+    margin-top: 0;
+
+    font-family: 'Manrope-Bold';
+
+}
+
+
+
+.two-part .summaries-content-right img {
+
+    width: auto;
+
+}
+
+
+
+.do-you-have.three-part {
+
+    background: url('../images/front_image/how-work-one.png');
+
+    background-repeat: no-repeat;
+
+    background-size: 100% 100%;
+
+    margin: auto;
+
+    margin-top: 60px;
+
+    padding: 95px;
+
+}
+
+
+
+.how-we-work .inner-img-part {
+
+    margin: auto;
+
+    margin-top: -30px;
+
+    margin-bottom: -90px;
+
+    text-align: center;
+
+}
+
+
+
+.how-we-work .inner-img-part.second {
+
+    margin-bottom: -109px;
+
+    margin-top: -49px;
+
+}
+
+
+
+.how-we-work a.uplode-doc-btn {
+
+    background-color: #0F2239;
+
+    color: #fff;
+
+    padding: 11px 0;
+
+    border-radius: 5px;
+
+    border: none;
+
+    font-family: 'Manrope-Medium';
+
+    text-decoration: none;
+
+    margin: auto;
+
+    display: flex;
+
+    justify-content: center;
+
+    width: 21%;
+
+    margin-top: 60px;
+
+    align-items: center;
+
+}
+
+
+
+
+
+
+
+/* gradenzy sedction css */
+
+
+
+
+
+.gradenzy-content .about-inner-part {
+
+    display: flex;
+
+    gap: 11px;
+
+    align-items: center;
+
+    justify-content: center;
+
+}
+
+
+
+.gradenzy-content {
+
+    padding: 80px 0 0 0;
+
+}
+
+
+
+.gradenzy-content h1 {
+
+    font-family: 'Manrope-Bold';
+
+    font-size: 54px;
+
+    padding-top: 30px;
+
+}
+
+
+
+.gradenzy-content .study-inner-content {
+
+    text-align: center;
+
+    margin-top: 80px;
+
+    background-color: #F3F7FB;
+
+}
+
+
+
+.gradenzy-content .study-start {
+
+    display: flex;
+
+    gap: 80px;
+
+}
+
+
+
+.gradenzy-content .study-inner-content {
+
+    width: 45%;
+
+    padding-bottom: 80px;
+
+}
+
+
+
+.gradenzy-content .study-inner-content img {
+
+    margin-top: -68px;
+
+    margin-bottom: 30px;
+
+}
+
+
+
+.gradenzy-content .study-start {
+
+    display: flex;
+
+    gap: 80px;
+
+    margin-top: 40px;
+
+}
+
+
+
+.gradenzy-content .study-inner-content h4 {
+
+    color: black;
+
+    font-family: 'Manrope-Bold';
+
+}
+
+
+
+.gradenzy-content .study-inner-content p {
+
+    color: black;
+
+    padding-top: 9px;
+
+    font-family: 'Manrope-Medium';
+
+    font-size: 15px;
+
+    width: 91%;
+
+    margin: auto;
+
+    padding-bottom: 30px;
+
+}
+
+
+
+.gradenzy-content .study-inner-content a.uplode-btn img {
+
+    margin-top: -3px;
+
+    margin-bottom: 0;
+
+}
+
+
+
+
+
+.gradenzy-content .study-inner-content a button {
+
+    background-color: #0F2239;
+
+    color: #fff;
+
+    width: 50%;
+
+    padding: 11px 0;
+
+    border-radius: 5px;
+
+    border: none;
+
+    font-family: 'Manrope-Medium';
+
+}
+
+
+
+
+
+/* footer css */
+
+
+
+
+
+footer.gradenzy-footer-content {
+
+    background-color: #0F2239;
+
+    padding: 50px;
+
+    padding-top: 100px;
+
+    padding-bottom: 5px;
+
+    margin-top: 80px;
+
+}
+
+
+
+.inner-follow-content p {
+
+    color: #B3C1D3;
+
+    padding: 11px 0;
+
+    line-height: 1.6;
+
+}
+
+
+
+.inner-follow-content h5 {
+
+    color: #fff;
+
+    margin-bottom: 0;
+
+}
+
+
+
+.inner-follow-content ul li {
+
+    color: #B3C1D3;
+
+    line-height: 2;
+
+}
+
+
+
+.inner-follow-content ul {
+
+    padding-left: 18px;
+
+}
+
+
+
+.reserved-text-bottom p {
+
+    color: #B3C1D3;
+
+    text-align: center;
+
+    border-top: solid 2px #676666;
+
+    margin-top: 25px;
+
+    padding-top: 25px;
+
+}
+
+
+
+
+
+.inner-follow-content p.tempor-text {
+
+    width: 80%;
+
+}
+
+
+
+.inner-follow-content p.fb-icons a {
+
+    color: #B3C1D3;
+
+    text-decoration: none;
+
+}
+
+.login_sec .form-group input {
+
+    margin-bottom: 14px;
+
+}
+
+
+
+.login_sec {
+
+    padding-top: 30px;
+
+}
+
+
+
+.account-format {
+
+    display: flex;
+
+    gap: 18px;
+
+}
+
+
+
+
+
+.sign_in_sec {
+
+    padding-top: 30px;
+
+}
+
+
+
+.sign_in_sec .account-format {
+
+    display: flex;
+
+    gap: 10px;
+
+}
+
+.sign_in_sec .form-group input {
+
+    margin-bottom: 14px;
+
+}
+
+
+
+.sign_in-account {
+
+    display: flex;
+
+    gap: 15px;
+
+    width: 100%;
+
+}
+
+
+/* signup css*/
+.signup-login-btn {
+    width: 43%;
+    margin: auto;
+}
+.signup-inner-content img {
+    display: flex;
+    margin: auto;
+    width: 68px;
+    margin-bottom: 18px;
+}
+.signup-inner-content {
+    background-color: #e7e7e7;
+    width: 40%;
+    margin: auto;
+    padding: 0px;
+    margin-top: 11px;
+    padding-top: 1px;
+    border-radius: 5px;
+    padding-bottom: 25px;
+}
+
+.signup-inner-content h4 {
+    color: #fff;
+    font-size: 28px;
+    font-family: 'Nunito';
+    font-weight: 800;
+}
+
+.signup-inner-content .form-register .form-group input {
+    padding: 11px 11px !important;
+}
+
+.signup-inner-content .form-register .form-group {
+    margin-bottom: 12px;
+}
+
+.signup-inner-content .form-register {
+    background-color: #fff;
+    width: 90%;
+    margin: auto;
+    border-radius: 20px;
+    padding: 20px 35px;
+    margin-top: 25px;
+    padding-bottom: 5px;
+}
+.signup-inner-content input::placeholder {
+    font-size: 15px;
+    color: #696974;
+    font-weight: 500;
+}
+.signup-inner-content .form-control-lg {
+    padding: 0 22px;
+}
+
+.signup-inner-content h5 {
+    font-size: 20px;
+    color: black;
+    font-weight: 600;
+    font-family: 'Nunito';
+}
+
+.signup-inner-content p {
+    font-family: 'Nunito';
+}
+
+.signup-inner-content .form-check .form-check-label input[type=checkbox]:checked + .input-helper:before {
+    background: #00B207;
+    border-width: 0;
+}
+
+.signup-inner-content .form-check .form-check-label input[type=checkbox] + .input-helper:before {
+    border:2px solid #00B207;
+}
+
+
+.signup-inner-content .auth-form-btn {
+    background-color: #00B207;
+    color: #fff;
+    font-weight: 800;
+    font-family: 'Nunito';
+    font-size: 18px !important;
+    padding: 15px 0;
+}
+.signup-inner-content .auth-form-btn:hover {
+    color: #fff;
+    background-color: #ff8a00;
+}
+.signup-inner-content label.form-check-label.text-muted {
+    font-family: 'Nunito';
+    color: black;
+    font-weight: 500;
+}
+
+p.already-account {
+    text-align: center;
+    padding-top: 11px;
+    color: black;
+    font-family: 'Nunito';
+}
+p.already-account a {
+    color: #FF8A00;
+    font-weight: 800;
+    text-decoration: none;
+}
+
+.signup-inner-content .form-check .form-check-label input[type=checkbox]:checked + .input-helper:after {
+    width: 18px !important;
+    opacity: 1;
+    line-height: 18px;
+    font-size: 12px;
+    padding-left: 1px;
+}
+
+a.continue {
+    display: flex;
+    justify-content: center;
+    font-weight: 600;
+    color: #B5B5BE;
+    text-decoration: none;
+    font-family: 'Nunito';
+}
+.signup-inner-content .three-btn img.one {
+    background-color: #171725;
+    border-radius: 16px;
+    padding: 0px 30px;
+    width: 80px;
+    height: 42px;
+}
+.signup-inner-content .three-btn img.two {
+    background-color: #3C66C3;
+    border-radius: 16px;
+    padding: 0px 36px;
+    width: 80px;
+    height: 42px;
+}
+
+.signup-inner-content .three-btn img.three {
+    background-color: #CF4232;
+    border-radius: 16px;
+    padding: 0px 32px;
+    width: 80px;
+    height: 42px;
+}
+
+.signup-inner-content .three-btn {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+    margin-top: 18px;
+}
+
+.signup-login-btn .customer {
+    background-color: #FF8A00;
+    border: none;
+    font-size: 18px;
+    font-weight: 500;
+    font-family: 'Nunito';
+    border-radius: 5px;
+    padding: 15px 0;
+}
+.signup-login-btn .vendor {
+    background-color: #fff;
+    color: black;
+    font-size: 18px;
+    font-family: 'Nunito';
+    font-weight: 500;
+    border: none;
+    border-radius: 5px;
+    border: solid 1px #ff8a00;
+    padding: 15px 0;
+}
+.row.elite-register-inner {
+    display: block;
+    margin: 30px 0;
+}
+
+.signup-login-btn .customer:hover {
+    background-color: #00b207;
+}
+
+.signup-login-btn .vendor:hover {
+    background-color: #00b207;
+    color: #fff;
+    border: solid 1px #00b207;
+}
+
+.elite-login .reset-pass a {
+    color: #171725;
+    font-family: 'Nunito';
+    text-decoration: none;
+    display: flex;
+    justify-content: flex-end;
+    font-weight: 600;
+}
+
+.elite-login .reset-pass a:hover {
+    color: #ff8a00;
+}
+
+p.already-account a:hover {
+    color: #00b207;
+}
+
+a.continue:hover {
+    color: #ff8a00;
+}
+
+@media (min-width:768px) and (max-width:1024px) {
+
+
+
+.signup-inner-content {
+    width: 68%;
+}
+
+.signup-login-btn {
+    width: 73%;
+    margin: auto;
+}
+
+    .card-provide-inner {
+
+        display: block;
+
+    }
+
+
+
+    section.card-provide {
+
+        display: block;
+
+        width: 91%;
+
+        margin: auto;
+
+        margin-top: 30px;
+
+    }
+
+
+
+    section.card-provide .card {
+
+        margin-bottom: 30px;
+
+        padding: 30px;
+
+        padding-bottom: 15px;
+
+    }
+
+
+
+    section.about-us {
+
+        padding: 30px 38px;
+
+        display: block;
+
+    }
+
+
+
+    .how-we-work ul.nav.nav-tabs.nav-justified {
+
+        padding: 0;
+
+    }
+
+
+
+    .about-welcome-two {
+
+        padding-left: 0;
+
+        width: 100%;
+
+    }
+
+
+
+    .how-we-work ul.nav.nav-tabs.nav-justified {
+
+        width: auto;
+
+    }
+
+
+
+    .how-we-work .nav-tabs .nav-link {
+
+        font-size: 15px;
+
+    }
+
+
+
+    .about-welcome {
+
+        width: 100%;
+
+    }
+
+
+
+    .about-left img {
+
+        width: 100%;
+
+    }
+
+
+
+    .about-left {
+
+        width: 100%;
+
+    }
+
+
+
+    .about-right {
+
+        width: 100%;
+
+        margin-top: 45px;
+
+    }
+
+
+
+    .documents-content {
+
+        width: 98%;
+
+    }
+
+
+
+    .do-you-have {
+
+        padding: 30px;
+
+    }
+
+
+
+    .how-we-work .inner-img-part {
+
+        display: none;
+
+    }
+
+
+
+    .do-you-have.two-part {
+
+        padding: 30px;
+
+    }
+
+
+
+    .do-you-have.three-part {
+
+        padding: 30px;
+
+    }
+
+
+
+
+
+    .how-we-work a.uplode-doc-btn {
+
+        width: 32%;
+
+        margin-top: 40px;
+
+    }
+
+
+
+    .gradenzy-content {
+
+        padding: 30px 0 0 0;
+
+    }
+
+
+
+    .gradenzy-content .study-start {
+
+        display: block;
+
+    }
+
+
+
+    .gradenzy-content .study-inner-content {
+
+        width: 100%;
+
+        padding-bottom: 50px;
+
+    }
+
+
+
+    .inner-follow-content h5 {
+
+        font-size: 15px;
+
+    }
+
+
+
+    .inner-follow-content p.tempor-text {
+
+        width: 100%;
+
+    }
+
+
+
+    footer.gradenzy-footer-content {
+
+        margin-top: 50px;
+
+        padding: 18px;
+
+        padding-top: 50px;
+
+    }
+
+
+
+    .studies-content p {
+
+        width: 100%;
+
+    }
+
+
+
+    .studies-content h1 {
+
+        font-size: 45px;
+
+    }
+
+
+
+    .about-right h1 {
+
+        padding: 10px 0;
+
+        font-size: 35px;
+
+    }
+
+
+
+    .how-we-work h1 {
+
+        font-size: 45px;
+
+    }
+
+
+
+
+
+    .do-you-have h1 {
+
+        font-size: 36px;
+
+        margin-bottom: 0;
+
+    }
+
+
+
+    .gradenzy-content h1 {
+
+        font-size: 45px;
+
+    }
+
+
+
+    .gradenzy-content .study-inner-content a button {
+
+        width: 40%;
+
+    }
+
+
+
+    nav.navbar span.navbar-toggler-icon i.fa.fa-bars {
+
+        font-size: 30px;
+
+    }
+
+
+
+    .help-for-studies .input-group {
+
+        width: 68%;
+
+        margin: auto;
+
+    }
+
+
+
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+@media only screen and (max-width: 767px) {
+
+.signup-login-btn {
+    width: 100%;
+    margin: auto;
+    padding-left: 0px;
+    padding-right: 0;
+}
+.signup-inner-content {
+    background-color: #e7e7e7;
+    width: 100%;
+}
+    .how-we-work ul.nav.nav-tabs.nav-justified {
+
+        width: 100%;
+
+        padding: 24px;
+
+    }
+
+    .how-we-work ul.nav.nav-tabs.nav-justified {
+
+        width: auto;
+
+        display: block;
+
+    }
+
+
+
+    .card-provide-inner {
+
+        display: block;
+
+        gap: 40px;
+
+    }
+
+
+
+    .about-welcome-two {
+
+        padding-left: 11px;
+
+    }
+
+
+
+    .about-welcome {
+
+        width: 100%;
+
+    }
+
+
+
+    nav.navbar {
+
+        padding: 9px 9px;
+
+    }
+
+
+
+    .study-content {
+
+        padding: 15px 22px;
+
+    }
+
+
+
+    .studies-content h1 {
+
+        font-size: 36px;
+
+    }
+
+
+
+    .studies-content {
+
+        padding: 40px 0;
+
+    }
+
+
+
+    .studies-content p {
+
+        width: 95%;
+
+    }
+
+
+
+    section.card-provide {
+
+        display: block;
+
+        width: 90%;
+
+        margin: auto;
+
+        margin-top: 28px;
+
+    }
+
+
+
+    .help-for-studies input#example-search-input {
+
+        padding: 20px 42px;
+
+        font-size: 14px;
+
+    }
+
+
+
+    .help-for-studies .input-group i.fa.fa-search {
+
+        margin-top: 13px;
+
+    }
+
+
+
+    section.card-provide .card {
+
+        margin-bottom: 20px;
+
+        padding: 15px;
+
+    }
+
+
+
+    section.about-us {
+
+        padding: 40px 0;
+
+        display: block;
+
+    }
+
+
+
+    .about-left {
+
+        width: 90%;
+
+        margin: auto;
+
+    }
+
+
+
+    .about-left img {
+
+        width: 100%;
+
+        margin: auto;
+
+    }
+
+
+
+    .about-right {
+
+        width: 100%;
+
+        text-align: center;
+
+        padding-top: 35px;
+
+    }
+
+
+
+    .about-right h1 {
+
+        font-size: 32px;
+
+        padding-bottom: 0;
+
+    }
+
+
+
+    .about-inner-part {
+
+        justify-content: center;
+
+    }
+
+
+
+    .about-right ul li {
+
+        padding: 0 8px;
+
+        margin-top: 11px;
+
+        align-items: center;
+
+        gap: 8px;
+
+        text-align: left;
+
+    }
+
+
+
+    .how-we-work {
+
+        padding: 35px 0;
+
+    }
+
+
+
+    .how-we-work h1 {
+
+        font-size: 36px;
+
+    }
+
+
+
+    .documents-content {
+
+        padding: 20px 0;
+
+        border-radius: 60px;
+
+        width: 100%;
+
+        display: block;
+
+    }
+
+
+
+    .documents-content a {
+
+        line-height: 3.5;
+
+    }
+
+
+
+    .do-you-have {
+
+        padding: 15px;
+
+        border-radius: 35px;
+
+    }
+
+
+
+    .summaries-content {
+
+        display: block;
+
+        align-items: center;
+
+    }
+
+
+
+    .summaries-content-right img {
+
+        width: 25%;
+
+    }
+
+
+
+    .summaries-content h1 {
+
+        font-size: 22px;
+
+    }
+
+
+
+    .summaries-content-left p {
+
+        width: 100%;
+
+    }
+
+
+
+    .about-right p {
+
+        width: 90%;
+
+        margin: auto;
+
+    }
+
+
+
+    .about-right ul {
+
+        width: 75%;
+
+        margin: auto;
+
+        margin-bottom: 40px;
+
+    }
+
+
+
+    .how-we-work .inner-img-part {
+
+        display: none;
+
+    }
+
+
+
+    .do-you-have.two-part {
+
+        padding: 15px;
+
+        border-radius: 35px;
+
+    }
+
+
+
+    .do-you-have.three-part {
+
+        padding: 15px;
+
+        border-radius: 35px;
+
+    }
+
+
+
+    .two-part .summaries-content-right img {
+
+        float: left;
+
+        width: fit-content;
+
+    }
+
+
+
+    .do-you-have.two-part p {
+
+        text-align: left;
+
+        padding-left: 0;
+
+    }
+
+
+
+    .do-you-have.two-part h1 {
+
+        text-align: left;
+
+        margin-top: 0;
+
+    }
+
+
+
+    .do-you-have.two-part .summaries-content-right {
+
+        display: flex;
+
+        flex-direction: column;
+
+    }
+
+
+
+    .do-you-have.two-part .summaries-content-left img {
+
+        width: 90px;
+
+    }
+
+
+
+
+
+    .do-you-have.two-part .summaries-content {
+
+        display: flex;
+
+        align-items: center;
+
+        flex-direction: column-reverse;
+
+    }
+
+
+
+    .do-you-have.two-part .summaries-content-left {
+
+        width: 100%;
+
+    }
+
+
+
+    .how-we-work a.uplode-doc-btn {
+
+        width: 60%;
+
+        margin-top: 40px;
+
+    }
+
+
+
+    .gradenzy-content {
+
+        padding: 40px 0 0 0;
+
+    }
+
+
+
+    .gradenzy-content h1 {
+
+        font-size: 36px;
+
+        padding-top: 10px;
+
+    }
+
+
+
+    .gradenzy-content .study-start {
+
+        display: block;
+
+    }
+
+
+
+    .gradenzy-content .study-inner-content {
+
+        width: 95%;
+
+        padding-bottom: 50px;
+
+        margin: auto;
+
+        margin-bottom: 50px;
+
+        margin-top: 90px;
+
+    }
+
+
+
+    .gradenzy-content .study-inner-content a button {
+
+        width: 65%;
+
+    }
+
+
+
+    footer.gradenzy-footer-content {
+
+        margin-top: 0px;
+
+        padding: 5px;
+
+        padding-top: 18px;
+
+        padding-bottom: 5px;
+
+        width: auto;
+
+    }
+
+
+
+    nav.navbar span.navbar-toggler-icon i.fa.fa-bars {
+
+        font-size: 30px;
+
+    }
+
+
+
+    button.navbar-toggler.collapsed {
+
+        border: solid 2px #aae2f8;
+
+    }
+
+
+
+    .help-for-studies .input-group {
+
+        width: 92%;
+
+        margin: auto;
+
+    }
+
+
+
+
+
+    .navbar .right-section {
+
+        justify-content: center;
+
+        gap: 9px;
+
+    }
+
+
+
+
+
+
+
+}

@@ -1,0 +1,359 @@
+
+.tailor-featured .featured-list-first .dropdown {
+    width: 25%;
+}
+.tailor-featured .featured-list-first {
+    background-color: #fff;
+    margin-top: 68px;
+    padding: 35px;
+    border-radius: 8px;
+}
+.tailor-featured .featured-list-first .input-group {
+    width: 25%;
+}
+
+
+.tailor-featured .featured-list-first input#form1 {
+    height: 49px;
+    border: solid 1px #FF8A00;
+    border-radius: 6px 0px 0px 6px;
+}
+
+.tailor-featured .featured-list-first .form-control {
+    padding: 5px;
+}
+
+.tailor-featured .featured-list-first a.btn.btn-secondary.dropdown-toggle {
+    width: 100%;
+    padding: 12px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    background: none;
+    border: solid 1px #FF8A00;
+    font-size: 15px;
+    color: #000000;
+    font-family: 'Open Sans';
+    font-weight: 500;
+}
+.tailor-featured {
+    background-color: #F3F3F6;
+    padding-top: 1px;
+    padding-bottom: 60px;
+}
+.tailor-featured button.btn.search-btn {
+    background-color: #FF8A00;
+    color: #fff;
+}
+.tailor-featured button.btn.search-btn i.fas.fa-search {
+    font-size: 15px;
+}
+
+
+
+
+.row.featured-list {
+    margin-top: 50px;
+    position: relative;
+}
+.tailor-featured .featured-list-first .form-control:focus {
+    box-shadow: none;
+    border: none;
+    padding: 5px;
+}
+.tailor-featured .featured-list-first [type=search] {
+    outline: none !important;
+}
+.banner-tailors img {
+    width: 100%;
+    height: 380px;
+}
+.browse-content h1 {
+    line-height: 2;
+}
+.banner-tailors {
+    position: relative;
+    background-image: url("https://votivelaravel.in/tailor_hub/public/front_assets/images/bg-1.png");
+    background-repeat: no-repeat;
+    height: 225px;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    padding: 0 50px;
+}
+
+.listfoliopro-listing-item .view-profile-btn a {
+    background-color: #FF8A00;
+    color: #fff;
+    padding: 10px 80px;
+    border-radius: 25px;
+    font-family: 'Nunito';
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+}
+.listfoliopro-listing-item i.fa-regular.fa-heart {
+    position: absolute;
+    top: 15px;
+    left: 30px;
+    background-color: #fff;
+    padding: 10px;
+    border-radius: 50px;
+}
+
+
+.location.align-items-center.no-gutter-right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 50%;
+}
+
+.listfoliopro-listing-item {
+    padding: 22px;
+    border: 1px solid #FFFFFF;
+    border-radius: 25px;
+    overflow: hidden;
+    height: 100%;
+    position: relative;
+    background: #ffffff;
+}
+
+.view-profile-btn {
+    margin-top: 25px;
+}
+
+.featured-list .card-img-container img {
+    width: 100%;
+    border-radius: 15px;
+}
+
+.star-icon {
+    background-color: #009C10;
+    color: #fff;
+    display: flex;
+    width: 26%;
+    justify-content: center;
+    align-items: center;
+    border-radius: 2px;
+    gap: 5px;
+    padding: 6px 0;
+    position: absolute;
+    top: 38px;
+    left: 39px;
+    padding: 3px 0;
+    width: 80px;
+    border-radius: 2px;
+}
+
+.star-icon p {
+    margin-bottom: 0;
+    font-family: 'Poppins';
+}
+
+.listfoliopro-listing-item .card-body {
+    padding-top: 13px;
+}
+
+.listing-title a {
+    font-size: 25px;
+    color: #FF8626;
+    font-family: "Nunito";
+    font-weight: 600;
+    text-decoration: none;
+    text-transform: capitalize;
+}
+.listing-title a:hover {
+    color: #00B207;
+}
+
+.location-date-wrapper p {
+    color: black;
+    padding-top: 9px;
+    font-family: Open Sans;
+    font-size: 15px;
+}
+.location-date-wrapper {
+    color: #000000;
+    font-family: Open Sans;
+    font-size: 15px;
+}
+
+.featured-list .card-img-container:hover img {
+    transform: scale(1.1);
+    transition: 1s;
+    cursor: pointer;
+}
+
+.featured-list .card-img-container {
+    overflow: hidden;
+}
+
+.three-icon-list img {
+    width: 21px !important;
+    border-radius: 0px !important;
+}
+.three-icon-list i {
+    font-size: 18px;
+}
+
+.three-icon-list {
+    float: right;
+    margin-top: 10px;
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+}
+
+
+
+/*tailor detail page css*/
+
+.about-tailor-inner {
+    padding-top: 50px;
+    padding-bottom: 60px;
+}
+
+.about-tailor-inner p.deleniti-text {
+    line-height: 1.6;
+}
+
+.about-inner-left img {
+    width: 96%;
+}
+
+.about-inner-btn a {
+    background-color: #FF8A00;
+    color: #fff;
+    text-decoration: none;
+    padding: 15px 35px;
+    border-radius: 40px;
+    margin-right: 4px;
+    line-height: 5.5;
+}
+
+.about-inner-btn a:hover {
+    background-color: #000;
+}
+.row.first-inner-content {
+    row-gap: 30px;
+    align-items: center;
+    margin-top: 40px;
+}
+.about-inner-right h4 {
+    color: #00B207;
+    font-size: 20px;
+}
+
+.about-testimonial {
+    padding-top: 60px;
+}
+.about-inner-right p {
+    line-height: 1.7;
+}
+
+
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+
+.tailor-featured .featured-list-first {
+    padding: 19px;
+}
+
+.tailor-featured .featured-list-first .dropdown-toggle::after {
+    position: absolute;
+    right: 18px;
+    top: 22px;
+}
+
+.tailor-featured .featured-list-first .input-group {
+    width: 25%;
+    flex-wrap: nowrap;
+}
+
+.row.featured-list {
+    row-gap: 30px;
+}
+
+.row.featured-list .col-md-4 {
+    width: 50%;
+}
+.row.first-inner-content {
+    display: block;
+}
+
+.about-inner-left {
+    width: 100%;
+}
+
+.about-inner-right {
+    width: 100%;
+    padding-top: 25px;
+}
+
+}
+
+
+@media only screen and (max-width: 767px) {
+ .tailor-featured .featured-list-first .dropdown {
+    width: 100%;
+    margin-bottom: 18px;
+}
+.tailor-featured .featured-list-first {
+    display: block;
+    margin-top: 40px;
+}    
+
+.tailor-featured .featured-list-first input#form1 {
+    height: 45px;
+    width: 250px;
+}
+.tailor-featured .featured-list-first .input-group {
+    width: 100%;
+}
+.tailor-featured .featured-list-first .dropdown-toggle::after {
+    position: absolute;
+    right: 18px;
+    top: 21px;
+}
+
+.featured-list-first ul.dropdown-menu.show {
+    padding: 9px;
+    border: solid 1px #ff8a00;
+}
+.banner-tailors {
+    height: 160px;
+}
+
+.browse-content h1 {
+    line-height: 3.4;
+}
+
+.about-tailor-inner {
+    padding-top: 30px;
+    padding-bottom: 25px;
+}
+.row.first-inner-content {
+    margin-top: 25px;
+}
+
+.about-inner-btn a {
+    padding: 9px 12px;
+    border-radius: 40px;
+    margin-right: 4px;
+    line-height: 3.5;
+    font-size: 15px;
+}
+}
+
+.popup_btn1 {
+    background-color: #FF8A00;
+    color: #fff;
+    text-decoration: none;
+    padding: 15px 35px;
+    border-radius: 40px;
+    margin-right: 4px;
+}
+.popup_btn1:hover {
+    background-color: #000;
+}

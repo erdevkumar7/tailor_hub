@@ -1,0 +1,399 @@
+@import "http://fonts.googleapis.com/icon?family=Material+Icons";
+
+@font-face {
+    font-family: 'Manrope-Bold';
+    src: url('../css/Manrope-Bold.ttf');
+}
+
+@font-face {
+    font-family: 'Manrope-Medium';
+    src: url('../css/Manrope-Medium.ttf');
+}
+
+.dashboard a.view-profile-btn {
+    position: absolute;
+    text-decoration: none;
+    top: 198px;
+    right: 100px;
+    z-index: 1;
+    border-radius: 35px;
+    border: 1px solid #ABE3F9;
+    background-color: #ABE3F9;
+    color: black;
+    font-size: 1.12em;
+    font-weight: 500;
+    text-align: center;
+    transition: .1s;
+    cursor: pointer;
+    padding: 15px 20px;
+    width: 14%;
+    font-family: 'Manrope-Bold';
+}
+
+.dashboard a.view-profile-btn:hover {
+    color: black;
+    background-color: transparent;
+}
+
+.dashboard i.fas.fa-eye {
+    margin-right: 8px;
+}
+
+.dashboard h2.dash-inner-text {
+    padding-top: 40px;
+    font-family: 'Manrope-Bold';
+}
+
+.left-side-profile {
+    padding: 25px 30px;
+    border-radius: 5px;
+    border: 1px solid #d1ebfb;
+    width: 30%;
+    height: 281px;
+    background-color: #effdff;
+}
+
+.left-side-profile li.your-community-text {
+    border: none !important;
+}
+
+.left-side-profile ul.nav-link i {
+    padding-right: 20px;
+}
+
+.left-side-profile ul.nav-link a {
+    text-decoration: none;
+    color: #272e5d;
+    font-family: 'Manrope-Bold';
+}
+
+.left-side-profile ul.nav-link i {
+    font-size: 18px;
+}
+
+.right-side-profile {
+    padding: 20px 30px;
+    border-radius: 5px;
+    border: 1px solid #d1ebfb;
+    width: 68%;
+}
+
+.dashboard-content {
+    margin-top: 60px;
+    display: flex;
+    gap: 20px;
+}
+
+.right-side-profile h2 {
+    font-size: 20px;
+    padding: 10px 0;
+    font-family: 'Manrope-Bold';
+}
+
+.left-side-profile ul.nav-link a:hover {
+    color: #199be9;
+}
+
+.profile-field img {
+    border-radius: 50%;
+    border: 2px solid #d1ebfb;
+    width: 9%;
+    padding: 4px;
+}
+
+.profile-field {
+    display: flex;
+    align-items: center;
+    gap: 280px;
+    padding-top: 25px;
+}
+
+.select-file-btn {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    font-family: 'Manrope-Medium';
+}
+
+.select-file-btn button {
+    background-color: #f4f4f4;
+    border-radius: 3px;
+    padding: 10px 35px;
+    color: #272e5d;
+    font-size: 15px;
+    margin-bottom: 8px;
+    border: none;
+}
+
+p.picture-text {
+    font-size: 12px;
+    text-align: center;
+    padding-top: 18px;
+    font-family: 'Manrope-Medium';
+    padding-bottom: 10px;
+}
+
+.select-file-btn span {
+    font-size: 15px;
+    color: #5b6080;
+}
+
+.left-side-profile ul.nav.nav-tabs {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    border: none;
+}
+
+.left-side-profile ul.nav.nav-tabs a {
+    color: #272e5d;
+    font-family: 'Manrope-Bold';
+    text-decoration: none;
+    background: none;
+    box-shadow: none;
+    font-size: 15px;
+    padding: 0;
+    border: none;
+}
+
+.left-side-profile ul.nav.nav-tabs i {
+    margin-right: 18px;
+}
+
+
+.left-side-profile ul.nav.nav-tabs li {
+    padding-bottom: 20px;
+    border-bottom: solid 1px #d1ebfb;
+}
+
+.left-side-profile ul.nav.nav-tabs a:hover {
+    color: #199be9;
+}
+
+.education-list {
+    font-family: 'Manrope-Medium';
+}
+
+.education-list-inner {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px;
+    padding-top: 35px;
+    font-family: 'Manrope-Medium';
+    border-top: 1px solid #d1ebfb;
+}
+
+h5.change-text {
+    color: #199be9;
+    font-size: 16px;
+}
+
+h5.education-text {
+    font-size: 16px;
+    font-family: 'Manrope-Bold';
+}
+
+.education-list .input-field {
+    display: flex;
+    align-items: center;
+    gap: 205px;
+    line-height: 2.8;
+}
+
+.education-list .input-field input {
+    border: none;
+}
+
+.education-list .input-field label {
+    width: 26%;
+    padding-top: 11px;
+}
+
+.education-list .input-field input:focus-visible {
+    outline: none;
+}
+
+.education-list .input-field input {
+    width: 58%;
+    border-bottom: 1px solid #d1ebfb;
+    padding-bottom: 5px;
+    padding-top: 15px;
+}
+
+div#form-study-data {
+    padding: 15px;
+}
+
+form#form-about-me {
+    padding: 15px;
+}
+
+form#form-about-me .education-list-inner {
+    padding: 0;
+    padding-top: 35px;
+    padding-bottom: 35px;
+}
+
+.list-collect-data.list-collect-salesprofile {
+    padding: 0;
+    padding-top: 35px;
+    padding-bottom: 35px;
+}
+
+div#form-sales-profile textarea#input_describe-store {
+    border: none;
+}
+
+div#form-sales-profile textarea:focus-visible {
+    outline: none;
+}
+
+div#form-language-data {
+    width: 60%;
+    border-bottom: 1px solid #d1ebfb;
+}
+
+.list-profile-data {
+    display: flex;
+    justify-content: space-between;
+}
+
+h2.alert-notification {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.alert-notification span {
+    color: #199be9;
+    font-size: 16px;
+}
+
+label.title-profileinfo {
+    font-weight: 500;
+    font-family: 'Manrope-Bold';
+}
+
+.item-profileinfo {
+    display: flex;
+    gap: 15px;
+    line-height: 2.2;
+    border-top: 1px solid #d1ebfb;
+    padding-top: 10px;
+}
+
+.account-community.one {
+    padding-bottom: 25px;
+}
+
+.list-profileinfo.list-infocommunity li.item-profileinfo {
+    border-bottom: 1px solid #d1ebfb;
+    width: 50%;
+    padding: 37px 40px 30px 0;
+}
+
+.list-profileinfo.list-infocommunity {
+    display: flex;
+    align-items: flex-start;
+    flex-flow: row wrap;
+    justify-content: flex-start;
+    padding-left: 0;
+}
+
+div#justified-tabpanel-1 .list-inner-profile {
+    display: flex;
+    justify-content: space-between;
+    font-family: 'Manrope-Medium';
+}
+
+p.make-text {
+    font-family: 'Manrope-Medium';
+}
+
+.content-profileinfo p {
+    font-family: 'Manrope-Medium';
+}
+
+div#justified-tabpanel-1 .list-inner-profile .input-text {
+    padding-bottom: 20px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: solid 1px #d1ebfb;
+    padding-top: 10px;
+}
+
+div#justified-tabpanel-1 .list-inner-profile label {
+    width: 50%;
+    padding-top: 11px;
+}
+
+div#justified-tabpanel-1 .list-inner-profile input {
+    border: none;
+}
+
+div#justified-tabpanel-1 .list-inner-profile input:focus-visible {
+    outline: none;
+}
+
+div#justified-tabpanel-1 button.cta-action-active.changeCountry.onlyLanguage {
+    border: none;
+    background: none;
+    color: #199be9;
+}
+
+h5.title-list-collect {
+    padding-top: 40px;
+    padding-bottom: 10px;
+}
+
+.submit-field.connect-submit-field {
+    float: right;
+}
+
+.submit-field.connect-submit-field a.cta-submit-pw {
+    border-radius: 35px;
+    border: 1px solid #ABE3F9;
+    background-color: #ABE3F9;
+    color: black;
+    font-weight: 500;
+    text-align: center;
+    transition: .1s;
+    cursor: pointer;
+    padding: 10px 25px;
+    font-size: 1em;
+    display: inline-block;
+    text-decoration: none;
+    margin-top: 9px;
+}
+
+.submit-field.connect-submit-field a.cta-submit-pw:hover {
+    color: black;
+    background-color: transparent;
+}
+
+div#form-delete-user {
+    margin-top: 98px;
+}
+
+div#form-delete-user .input-field {
+    display: flex;
+    justify-content: space-between;
+    font-family: 'Manrope-Medium';
+}
+
+div#form-delete-user button.cta-delete-user {
+    color: #199be9;
+    background: none;
+    border: none;
+    font-family: 'Manrope-Bold';
+}
+
+.account-community h5.title-community {
+    font-family: 'Manrope-Bold';
+}
+
+.account-community span.empty-follow {
+    font-family: 'Manrope-Medium';
+}
