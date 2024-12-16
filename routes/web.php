@@ -79,6 +79,8 @@ Route::group(['middleware'=>['web','checkUser']],function(){
     Route::post('/profile_update', [CustomerController::class, 'profile_update']);
 	Route::get('/customerDashboard',[CustomerController::class, 'customerDashboard']);
 
+    Route::get('/customerWishlist', [CustomerController::class, 'customerWishList'])->name('customer.wishList');
+    
     Route::any('/addShipping/{id?}',[CustomerController::class, 'addShipping'])->name('addShipping');
     Route::any('/viewAddress',[CustomerController::class, 'viewShippingAddress']);
     Route::post('/addressStatus',[CustomerController::class, 'addressStatus'])->name('addressStatus');

@@ -78,7 +78,7 @@
 }
 .banner-tailors {
     position: relative;
-    background-image: url("https://votivelaravel.in/tailor_hub/public/front_assets/images/bg-1.png");
+    background-image: url("../front_assets/images/bg-1.png");
     background-repeat: no-repeat;
     height: 225px;
     background-size: cover;
