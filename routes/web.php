@@ -56,6 +56,10 @@ Route::get('/', [HomeController::class, 'index']);
 Route::post('/store-location', [HomeController::class, 'storeLocation'])->name('store.location');
 Route::any('/searchN', [HomeController::class, 'searchHome'])->name('searchHome');
 /*****************************[Fabric seller search]****************************************/
+
+Route::any('/exploreProducts', [ProductController::class, 'exploreProducts'])->name('exploreProducts');  //Erdev
+Route::any('/productMarchent/{category_id}', [ProductController::class, 'machentByCategoryId'])->name('product.MachentByCategoryId'); //ErDev
+
 Route::any('/browseFebrics', [HomeController::class, 'browseFebrics'])->name('browseFebrics');
 Route::any('/febricMarchent/{id}', [HomeController::class, 'febricMarchent'])->name('febricMarchent');
 Route::any('/productDetail/{id}', [HomeController::class, 'productDetail'])->name('productDetail');
@@ -79,7 +83,7 @@ Route::group(['middleware'=>['web','checkUser']],function(){
     Route::post('/profile_update', [CustomerController::class, 'profile_update']);
 	Route::get('/customerDashboard',[CustomerController::class, 'customerDashboard']);
 
-    Route::get('/customerWishlist', [CustomerController::class, 'customerWishList'])->name('customer.wishList');
+    Route::get('/customerWishlist', [CustomerController::class, 'customerWishList'])->name('customer.wishList');  //Erdev
     
     Route::any('/addShipping/{id?}',[CustomerController::class, 'addShipping'])->name('addShipping');
     Route::any('/viewAddress',[CustomerController::class, 'viewShippingAddress']);

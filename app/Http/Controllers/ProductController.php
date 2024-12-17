@@ -10,25 +10,60 @@ use App\Models\Color;
 use App\Models\Size;
 use App\Models\ProductImage;
 use App\Models\ProductVariant;
+use Illuminate\Support\Facades\DB;
 use Session;
 
 class ProductController extends Controller
 {
     //
-    public function Products(){
+    public function Products()
+    {
         $data['products'] = Product::all();
-        return view("front/products/index",$data);
+        return view("front/products/index", $data);
     }
 
-    public function createProduct(){
+    public function exploreProducts()
+    {
+        $exploredProducts = Product::where('product_type', 1)
+            ->where('is_active', '1')
+            ->where('is_available', '1')
+            ->where('is_deleted', 0)
+            ->whereHas('category', function ($query) {
+                $query->where('is_active', 1)
+                    ->where('is_deleted', 0);
+            })
+            ->with('category')
+            ->get();
+        return view('front.exploreProduct', compact('exploredProducts'));
+    }
+
+    public function machentByCategoryId($category_id)
+    {
+        $data['category'] = Category::where('category_id',$category_id)->first();
+		$data['categoryType'] = Category::where('is_active','1')->get();
+ 
+        $data['vendors'] = DB::table('vendors')
+        ->join('products', 'vendors.vendor_id', '=', 'products.vendor_id')
+        ->where('products.category_id', $category_id)
+        ->where('products.product_type', 1)
+        ->select('vendors.*','products.*',)
+        ->distinct()
+        ->paginate(10);
+
+        return view("front/product_marchent", $data);
+    }
+
+    public function createProduct()
+    {
         $data['category'] = Category::all();
         $data['febrictype'] = FebricType::all();
         $data['colors'] = Color::all();
         $data['sizes'] = Size::all();
-        return view("front/products/create",$data);
+        return view("front/products/create", $data);
     }
 
-    public function productStore(Request $request){
+    public function productStore(Request $request)
+    {
         $category           = $request->category;
         $product_name       = $request->product_name;
         $img                = $request->img;
@@ -36,7 +71,7 @@ class ProductController extends Controller
         $product_type       = $request->product_type;
         $fabric_type        = $request->fabric_type;
         $gender_type        = $request->gender_type;
-        $product_details    =$request->product_details;
+        $product_details    = $request->product_details;
 
         // product varient 
 
@@ -56,8 +91,8 @@ class ProductController extends Controller
         $newProduct->is_deleted      = '0';
         $newProduct->save();
 
-        foreach($galary_img  as $img){
-            $imageName = uniqid().'.'.$request->img->extension();
+        foreach ($galary_img  as $img) {
+            $imageName = uniqid() . '.' . $request->img->extension();
             $request->img->move(public_path('Productupload'), $imageName);
             $newProduct_images                  = new ProductImage();
             $newProduct_images->product_id      = $newProduct->id;
@@ -81,6 +116,5 @@ class ProductController extends Controller
 
         Session::flash('message', 'Product Create Sucessfully!');
         return redirect()->to('/Products');
-
     }
 }
