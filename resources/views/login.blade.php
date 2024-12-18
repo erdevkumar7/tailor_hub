@@ -49,9 +49,9 @@
                                 <a href="#" class="continue">Or Continue with</a>
 
                                 <div class="three-btn">
-                                    <a href="#"><img class="one" src="https://votivelaravel.in/tailor_hub/public/web/images/one.svg" /></a>
-                                    <a href="{{ route('google.redirect') }}"><img class="three" src="https://votivelaravel.in/tailor_hub/public/web/images/three.svg" /></a>
-                                    <a href="#"><img class="two" src="https://votivelaravel.in/tailor_hub/public/web/images/two.svg" /></a>
+                                    <a href="#"><img class="one" src="{{ url('/public') }}/web/images/one.svg" /></a>
+                                    <a href="{{ route('google.redirect') }}"><img class="three" src="{{ url('/public') }}/web/images/three.svg" /></a>
+                                    <a href="#"><img class="two" src="{{ url('/public') }}/web/images/two.svg" /></a>
                                 </div>
                             </form>
                         </div>

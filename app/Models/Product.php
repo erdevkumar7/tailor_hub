@@ -12,13 +12,14 @@ class Product extends Model
     protected $table = "products";
     protected $primaryKey = 'id';
 
-    public function vendor()
-    {
-        return $this->belongsTo(Vendor::class, 'vendor_id', 'vendor_id');
-    }
+public function vendor()
+{
+    return $this->belongsTo(Vendor::class, 'vendor_id', 'vendor_id');
+}
 
-    public function category()
-    {
-        return $this->belongsTo(Category::class, 'category_id', 'category_id');
-    }
+public function category()
+{
+    return $this->belongsTo(Category::class, 'category_id', 'category_id');
+}
+
 }

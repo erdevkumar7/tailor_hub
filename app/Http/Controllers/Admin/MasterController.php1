@@ -38,13 +38,13 @@ class MasterController extends Controller
             $size_detail = Size::where('id', $id)->first();
         }
         if ($request->isMethod('post')) {
-
+            
             if($request->size_id)
             {
                 //This section is for update the size
                 $size = Size::where('size_name', $request->size_name)
-                        ->where('is_deleted', 0)
-                        ->where('id','!=', $request->size_id)
+                        ->where('is_deleted', 0) 
+                        ->where('id','!=', $request->size_id) 
                         ->first();
                 if($size)
                 {
@@ -52,7 +52,7 @@ class MasterController extends Controller
                         'error' => 'This size is already exist',
                         'id' => $request->size_id,
                     ]);
-                }
+                }  
                 else
                 {
                     DB::table('size_master')
@@ -60,20 +60,20 @@ class MasterController extends Controller
                             ->update([
                             'size_name' => trim($request->size_name)
                         ]);
-
+        
                         Session::flash('message', 'Size Updated Sucessfully!');
                         return redirect()->to('/admin/getSize');
-                }
+                }      
             }
             else{
                 //This section is for add size
                 $size = Size::where('size_name', $request->size_name)
-                    ->where('is_deleted', 0)
+                    ->where('is_deleted', 0) 
                     ->first();
                 if($size)
                 {
                     return back()->with('error','This size is already exist');
-                }
+                }    
                 else
                 {
                     $user               = new Size;
@@ -83,11 +83,11 @@ class MasterController extends Controller
                     $user->save();
                     $user_id = $user->id;
                     Session::flash('message', 'Size added Sucessfully!');
-
+        
                     return redirect()->to('/admin/getSize');
-                }
+                }  
             }
-
+              
         }
         return view('admin.master.add_size',compact('size_detail'));
     }
@@ -106,7 +106,7 @@ class MasterController extends Controller
         }
     }
     public function deleteSize($id){
-
+        
         $result =  DB::table('size_master')
                 ->where('id', $id)
                 ->update(
@@ -138,7 +138,7 @@ class MasterController extends Controller
             $color_detail = Color::where('color_id', $id)->first();
         }
         if ($request->isMethod('post')) {
-
+            
             if($request->color_id)
             {
                 //This section is for update the size
@@ -147,17 +147,17 @@ class MasterController extends Controller
                             ->orWhere('color_code', $request->color_code);
                             })
                             ->where('is_deleted', 0)
-                            ->where('color_id','!=', $request->color_id)
+                            ->where('color_id','!=', $request->color_id) 
                             ->first();
 
-
+                    
                 if($color)
                 {
                     return back()->with([
                         'error' => 'This Color is already exist',
                         'id' => $request->color_id,
                     ]);
-                }
+                }  
                 else
                 {
                     DB::table('color_master')
@@ -166,10 +166,10 @@ class MasterController extends Controller
                             'color_name' => trim($request->color_name),
                             'color_code' => trim($request->color_code)
                         ]);
-
+        
                         Session::flash('message', 'Color Updated Sucessfully!');
                         return redirect()->to('/admin/getColor');
-                }
+                }      
             }
             else{
                 //This section is for add size
@@ -182,7 +182,7 @@ class MasterController extends Controller
                 if($color)
                 {
                     return back()->with('error','This Color is already exist');
-                }
+                }    
                 else
                 {
                     $user               = new Color;
@@ -193,11 +193,11 @@ class MasterController extends Controller
                     $user->save();
                     $user_id = $user->color_id;
                     Session::flash('message', 'Color added Sucessfully!');
-
+        
                     return redirect()->to('/admin/getColor');
-                }
+                }  
             }
-
+              
         }
         return view('admin.master.add_color',compact('color_detail'));
     }
@@ -216,7 +216,7 @@ class MasterController extends Controller
         }
     }
     public function deleteColor($id){
-
+        
         $result =  DB::table('color_master')
                 ->where('color_id', $id)
                 ->update(
@@ -248,35 +248,35 @@ class MasterController extends Controller
            $speciality_detail = Speciality::where('speciality_id', $id)->first();
        }
        if ($request->isMethod('post')) {
-
+           
            if($request->speciality_id)
            {
                //This section is for update the size
                $speciality = Speciality::where('speciality_name', $request->speciality_name)
                                     ->where('is_deleted', '0')
-                                    ->where('speciality_id','!=', $request->speciality_id)
+                                    ->where('speciality_id','!=', $request->speciality_id) 
                                     ->first();
 
-
+                   
                if($speciality)
                {
                    return back()->with([
                        'error' => 'This speciality is already exist',
                        'id' => $request->speciality_id,
                    ]);
-               }
+               }  
                else
                {
                    DB::table('speciality_master')
                            ->where('speciality_id', $request->speciality_id)
                            ->update([
                            'speciality_name' => trim($request->speciality_name)
-
+                           
                        ]);
-
+       
                        Session::flash('message', 'Speciality Updated Sucessfully!');
                        return redirect()->to('/admin/getSpeciality');
-               }
+               }      
            }
            else{
                //This section is for add size
@@ -286,7 +286,7 @@ class MasterController extends Controller
                if($speciality)
                {
                    return back()->with('error','This Speciality is already exist');
-               }
+               }    
                else
                {
                    $user               = new Speciality;
@@ -296,11 +296,11 @@ class MasterController extends Controller
                    $user->save();
                    $user_id = $user->speciality_id;
                    Session::flash('message', 'Color added Sucessfully!');
-
+       
                    return redirect()->to('/admin/getSpeciality');
-               }
+               }  
            }
-
+             
        }
        return view('admin.master.add_speciality',compact('speciality_detail'));
    }
@@ -319,7 +319,7 @@ class MasterController extends Controller
        }
    }
    public function deleteSpeciality($id){
-
+       
        $result =  DB::table('speciality_master')
                ->where('speciality_id', $id)
                ->update(
@@ -344,7 +344,6 @@ class MasterController extends Controller
   }
   public function addFebricType(Request $request , $id = null)
   {
-    //    print_r($request->all());die;
       //This function is for add/update the size
       $febric_type_detail='';
       if($id)
@@ -352,46 +351,35 @@ class MasterController extends Controller
           $febric_type_detail = FebricType::where('febric_type_id', $id)->first();
       }
       if ($request->isMethod('post')) {
-
+          
           if($request->febric_type_id)
           {
               //This section is for update the size
               $febric = FebricType::where('febric_type_name', $request->febric_type_name)
                                    ->where('is_deleted', '0')
-                                   ->where('febric_type_id','!=', $request->febric_type_id)
+                                   ->where('febric_type_id','!=', $request->febric_type_id) 
                                    ->first();
 
-
+                  
               if($febric)
               {
                   return back()->with([
                       'error' => 'This Febric Type is already exist',
                       'id' => $request->febric_type_id,
                   ]);
-              }
+              }  
               else
               {
-                $fabricshow_detail = FebricType::where('febric_type_id', $request->febric_type_id)->first();
-                if ($request->hasFile('febric_image')) {
-                    $image = $request->file('febric_image');
-                    $imageName = "fab" . time() . '.' . $image->getClientOriginalExtension();
-                    $image->move(public_path('/upload/fabric'), $imageName);
-                }else {
-                    // echo "hi";die;
-                    $imageName = $fabricshow_detail->febric_image ;
-                    // print_r($imageName);die;
-                }
                   DB::table('febric_type_master')
                           ->where('febric_type_id', $request->febric_type_id)
                           ->update([
-                          'febric_type_name' => trim($request->febric_type_name),
-                          'febric_image' => $imageName
-
+                          'febric_type_name' => trim($request->febric_type_name)
+                          
                       ]);
-
+      
                       Session::flash('message', 'Febric Type Updated Sucessfully!');
                       return redirect()->to('/admin/getFebricType');
-              }
+              }      
           }
           else{
               //This section is for add size
@@ -401,28 +389,21 @@ class MasterController extends Controller
               if($febric)
               {
                   return back()->with('error','This Febric Type is already exist');
-              }
+              }    
               else
               {
                   $user               = new FebricType;
-
-                  if ($request->hasFile('febric_image')) {
-                     $image = $request->file('febric_image');
-                     $imageName = "fab" . time() . '.' . $image->getClientOriginalExtension();
-                     $image->move(public_path('/upload/fabric'), $imageName);
-                 }
                   $user->febric_type_name    = trim($request->febric_type_name);
-                  $user->febric_image    = $imageName;
                   $user->is_active    = "1";
                   $user->is_deleted   = "0";
                   $user->save();
                   $user_id = $user->febric_type_id;
                   Session::flash('message', 'Febric Type added Sucessfully!');
-
+      
                   return redirect()->to('/admin/getFebricType');
-              }
+              }  
           }
-
+            
       }
       return view('admin.master.add_febric_type',compact('febric_type_detail'));
   }
@@ -441,7 +422,7 @@ class MasterController extends Controller
       }
   }
   public function deleteFebricType($id){
-
+      
       $result =  DB::table('febric_type_master')
               ->where('febric_type_id', $id)
               ->update(
@@ -473,23 +454,23 @@ class MasterController extends Controller
          $plan_detail = SubscriptionPlan::where('plan_id', $id)->first();
      }
      if ($request->isMethod('post')) {
-
+         
          if($request->plan_id)
          {
              //This section is for update the size
              $febric = SubscriptionPlan::where('plan_name', $request->plan_name)
                                   ->where('is_deleted', '0')
-                                  ->where('plan_id','!=', $request->plan_id)
+                                  ->where('plan_id','!=', $request->plan_id) 
                                   ->first();
 
-
+                 
              if($febric)
              {
                  return back()->with([
                      'error' => 'This Subscription plan is already exist',
                      'id' => $request->plan_id,
                  ]);
-             }
+             }  
              else
              {
                  DB::table('sub_plans')
@@ -498,12 +479,12 @@ class MasterController extends Controller
                          'plan_name' => trim($request->plan_name),
                          'plan_html' => $request->plan_html,
                          'plan_amount' => $request->plan_amount
-
+                         
                      ]);
-
+     
                      Session::flash('message', 'Subscription Plan Updated Sucessfully!');
                      return redirect()->to('/admin/getPlans');
-             }
+             }      
          }
          else{
              //This section is for add size
@@ -513,7 +494,7 @@ class MasterController extends Controller
              if($febric)
              {
                  return back()->with('error','This Subscription Plan is already exist');
-             }
+             }    
              else
              {
                  $user               = new SubscriptionPlan;
@@ -525,11 +506,11 @@ class MasterController extends Controller
                  $user->save();
                  $user_id = $user->plan_id;
                  Session::flash('message', 'Subscription Plan added Sucessfully!');
-
+     
                  return redirect()->to('/admin/getPlans');
-             }
+             }  
          }
-
+           
      }
      return view('admin.master.add_plan',compact('plan_detail'));
  }
@@ -548,7 +529,7 @@ class MasterController extends Controller
      }
  }
  public function deletePlan($id){
-
+     
      $result =  DB::table('sub_plans')
              ->where('plan_id', $id)
              ->update(
@@ -563,7 +544,7 @@ class MasterController extends Controller
      }
 }
 /*******************[Subscription Plan Master End]************************/
-
+ 
  /*******************[Category Master Start]************************/
  public function getCategory()
  {
@@ -578,53 +559,38 @@ class MasterController extends Controller
      if($id)
      {
          $cate_detail = Category::where('category_id', $id)->first();
-        //  print_r($cate_detail->category_image);die;
-        //  echo $cate_detail->category_image;die;
      }
      if ($request->isMethod('post')) {
-
+         
          if($request->category_id)
          {
              //This section is for update the size
              $febric = Category::where('category_name', $request->category_name)
                                   ->where('is_deleted', '0')
-                                  ->where('category_id','!=', $request->category_id)
+                                  ->where('category_id','!=', $request->category_id) 
                                   ->first();
 
-
+                 
              if($febric)
              {
                  return back()->with([
                      'error' => 'This Category is already exist',
                      'id' => $request->category_id,
                  ]);
-             }
+             }  
              else
              {
-                $cateshow_detail = Category::where('category_id', $request->category_id)->first();
-                if ($request->hasFile('category_image')) {
-                    $image = $request->file('category_image');
-                    $imageName = "cat" . time() . '.' . $image->getClientOriginalExtension();
-                    $image->move(public_path('/upload/category'), $imageName);
-                }else {
-                    // echo "hi";die;
-                    $imageName = $cateshow_detail->category_image ;
-                    // print_r($imageName);die;
-                }
-
-
                  DB::table('category')
                          ->where('category_id', $request->category_id)
                          ->update([
                          'category_name' => trim($request->category_name),
-                         'category_image' => $imageName,
-
-
+                         
+                         
                      ]);
-
+     
                      Session::flash('message', 'Category Updated Sucessfully!');
                      return redirect()->to('/admin/getCategory');
-             }
+             }      
          }
          else{
              //This section is for add size
@@ -634,30 +600,21 @@ class MasterController extends Controller
              if($febric)
              {
                  return back()->with('error','This Category is already exist');
-             }
+             }    
              else
              {
-                // echo "<pre>";print_r($request->all());die;
-                 $user = new Category;
+                 $user               = new Category;
                  $user->category_name    = trim($request->category_name);
-                 if ($request->hasFile('category_image')) {
-                    $image = $request->file('category_image');
-                    $imageName = "cat" . time() . '.' . $image->getClientOriginalExtension();
-                    $image->move(public_path('/upload/category'), $imageName);
-                }
-                // echo $imageName;die;
-
-                 $user->category_image    = $imageName;
                  $user->is_active    = "1";
                  $user->is_deleted   = "0";
                  $user->save();
                  $user_id = $user->category_id;
                  Session::flash('message', 'Category added Sucessfully!');
-
+     
                  return redirect()->to('/admin/getCategory');
-             }
+             }  
          }
-
+           
      }
      return view('admin.master.add_category',compact('cate_detail'));
  }
@@ -676,7 +633,7 @@ class MasterController extends Controller
      }
  }
  public function deleteCategory($id){
-
+     
      $result =  DB::table('category')
              ->where('category_id', $id)
              ->update(

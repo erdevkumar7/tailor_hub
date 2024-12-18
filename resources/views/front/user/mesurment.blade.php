@@ -29,7 +29,7 @@
 
           <div class="row mesurment-body">
           <div class="col-md-6 mesurment-body-left">
-            <img src="https://votivelaravel.in/tailor_hub/public/front_assets/images/working-new-dress.png">
+            <img src="{{ url('/public') }}/front_assets/images/working-new-dress.png">
           </div>
 
           <div class="col-md-6 mesurment-body-right">
@@ -48,7 +48,7 @@
         <div class="row mesurment-inner-layout">
 
           <div class="col-md-12 mesurment-left">
-            <img src="https://votivelaravel.in/tailor_hub/public/front_assets/images/sheet.png">
+            <img src="{{ url('/public') }}/front_assets/images/measurement.jpg">
           </div>
 <div class="col-md-12 mesurment-right">
   <form class="measurement-form">

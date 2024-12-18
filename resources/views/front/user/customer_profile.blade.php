@@ -20,7 +20,7 @@
                                 <div class="card-body">
                                     <h4 class="card-title">Profile Update</h4>
                                     <p class="card-description"></p>
-                                    <form class="profile-input-form customer-profile-form" action="{{url('customerProfile')}}" id="profile_form" enctype="multipart/form-data" method="POST">
+                                    <form class="profile-input-form customer-profile-form" action="{{url('customerProfile')}}" id="course_form" enctype="multipart/form-data" method="POST">
                                     @csrf
                                         <div class="row customer-input-inner">
                                             <div class="col-md-6">
@@ -43,8 +43,8 @@
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <label for="exampleInputName2">Mobile Number</label>
-                                                    <input type="text" class="form-control" name="mobile_number" id="exampleInputName2" placeholder="Mobile Number" value="{{ $customer->mobile_number }}" readonly/>
+                                                    <label for="exampleInputName4">Mobile Number</label>
+                                                    <input type="text" class="form-control" name="mobile_number" id="exampleInputName4" placeholder="Mobile Number" value="{{ $customer->mobile_number }}" {{ $customer->mobile_number==""?'':'readonly' }}/>
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
@@ -59,7 +59,7 @@
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <label for="exampleSelectGender">Country</label>
+                                                    <label for="country">Country</label>
                                                     <select class="form-select" name="country_id" id="country">
                                                     <option value="" disabled {{ !$customer->country_id ? 'selected' : '' }}>Choose Country</option>
                                                     @foreach($countries as $country)
@@ -72,7 +72,7 @@
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <label for="exampleSelectGender">State</label>
+                                                    <label for="state">State</label>
                                                     <select class="form-select" name="state_id" id="state">
                                                     <option value="" disabled>Choose State</option>
                                                     @foreach($state as $states_list)
@@ -85,7 +85,7 @@
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <label for="exampleSelectGender">City</label>
+                                                    <label for="city">City</label>
                                                     <select class="form-select" name="city_id" id="city">
                                                     <option value="" disabled>Choose City</option>
                                                     @foreach($city as $city_list)
@@ -98,8 +98,8 @@
                                             </div>
                                             <div class="col-md-12">
                                                 <div class="form-group">
-                                                    <label for="exampleTextarea1">Postal Code</label>
-                                                    <input type="text" class="form-control" name="zipcode" id="exampleInputName2" placeholder="Postal Code" value="{{ $customer->zipcode }}"/>
+                                                    <label for="exampleInputName5">Postal Code</label>
+                                                    <input type="text" class="form-control" name="zipcode" id="exampleInputName5" placeholder="Postal Code" value="{{ $customer->zipcode }}"/>
                                                 </div>
                                             </div>
                                             <div class="col-md-12">
@@ -122,7 +122,7 @@
                                 <div class="card-body">
                                     <h4>Profile Image</h4>
                                     <label for="profile-image" class="upload-label" style="cursor: pointer;">
-                                        <img id="preview" src="{{ $customer->profile_image==''?'https://votivelaravel.in/tailor_hub/public/front_assets/images/design2.png': url('/public').'/admin/uploads/user/'.$customer->profile_image }} " alt="Profile Image" style="width: 100%; max-width: 200px; border: 1px dashed #ccc; padding: 10px;" />
+                                        <img id="preview" src="{{ empty($customer->profile_image) ? asset('front_assets/images/design2.png') : url('/public').'/admin/uploads/user/'.$customer->profile_image }} " alt="Profile Image" style="width: 100%; max-width: 200px; border: 1px dashed #ccc; padding: 10px;" />
                                         <span>Please Upload Image</span>
                                     </label>
                                     <input type="file" id="profile-image" style="display: none;" accept="image/*" name="profile_image"/>
@@ -166,16 +166,25 @@ window.addEventListener('load', function() {
                     email: true ,
 
                 },
+                gender: { required: true },
                 mobile_number: { required: true },
-                user_address: { required: true },
-
+                address: { required: true },
+                country_id: { required: true },
+                state_id: { required: true },
+                city_id: { required: true },
+                zipcode: { required: true },
             },
             messages: {
                 first_name: { required: "First name is required" },
                 last_name: { required: "Last name is required" },
                 email_id: { required: "Email is required", email: "Enter a valid email" },
                 mobile_number: { required: "Mobile number is required" },
-                user_address: { required: "Address is required" },
+                gender: { required: "Gender is required" },
+                address: { required: "Address is required" },
+                country_id:{ required: "Country is required" },
+                state_id:{ required: "State is required" },
+                city_id:{ required: "City is required" },
+                zipcode:{ required: "Postal Code is required" },
 
             },
             errorElement: 'span',

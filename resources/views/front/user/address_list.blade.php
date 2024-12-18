@@ -7,98 +7,57 @@
 <div class="banner-tailors">
     <div class="container browse-tailors">
         <div class="row browse-content">
-            <h1 class="text-white">Shipping Address</h1>
+            <h1 class="text-white">Shipping Add</h1>
         </div>
     </div>
 </div>
 
-<div class="container-fluid page-body-wrapper vendor-dasboard customer-dash">
-@include('front.user.sidebar')
+  <div class="container-fluid page-body-wrapper vendor-dasboard customer-dash">
+  @include('front.user.sidebar')
 
-            <div class="col-md-9">
-                <div class="row product-list">
-                    <table id="myTable" class="table table-striped" style="width:100%">
-        <thead>
-            <tr>
-            <th>Id</th>
-                <th>Title</th>
-                <th>Country</th>
-                <th>State</th>
-                <th>City</th>
-                <th>Postal Code</th>
-                <th>Primary</th>
-                <th>Is active</th>
-                <th>Action</th>
-            </tr>
-        </thead>
-        <tbody>
-
-            <?php $i = 1; ?>
-            @foreach ($address as $list)
-            <tr>
-              <td>{{$i}}</td>
-              <td>{{$list->address_name}}</td>
-              <td>{{$list->country_name}}</td>
-              <td>{{$list->state_name}}</td>
-              <td>{{$list->city_name}}</td>
-              <td>{{$list->postal_code}}</td>
-              <td>{{$list->postal_code}}</td>
-              <td class="approve-btn">
-                <input data-id="{{$list->id}}" class="toggle-class" type="checkbox" data-onstyle="success" data-offstyle="danger" data-toggle="toggle" data-on="Active" data-off="Inactive"
-                  {{ $list->is_active ? 'checked' : '' }}>
-              </td>
-              <td>
-                <a href="{{ route('addShipping',$list->id)}}" class="btn btn-sm btn-warning"><i class="fa fa-edit"></i></a>
-                <a title="Delete Address" class="btn btn-sm btn-danger" href="{{ route('deleteAddress',$list->id)}}" onclick="return confirm('Are you sure you want to delete this Address?')"><i class="fa fa-trash"></i>
-              </td>
-            </tr>
-            <?php $i++; ?>
-            @endforeach
-            
-        </tbody>
-    </table>
+    <div class="col-md-9">
+      <div class="row shipping-address-user">    
+      <a href="{{url('addShipping')}}" class="add-new-address"><span>+</span>ADD NEW ADDRESSss</a>
+      <div class="default-address">
+          
+          @foreach ($address as $list)
+            <div class="name-here-add">
+              <div class="name-inner">
+                <div class="will-gose-inner">
+                    <h5>{{$list->address_name}}</h5>
+                    <span>{{$list->address_line_1}}</span>
+                    <span>{{$list->address_line_2}}</span>
+                    <span>Landmark : {{$list->landmark}}</span>
+                    <span>{{$list->country_name}}</span>
+                    <span>{{$list->state_name}}</span>
+                    <span>{{$list->city_name}}</span>
+                    <span>{{$list->postal_code}}</span>
                 </div>
+                <div class="action-buttons">
+                  <span class="set-btn-inner">{{$list->is_primary==1?'':'SET DEFAULT'}}</span>
+                  <div class="fa-icons-btn">
+                  <a href="{{ route('addShipping',$list->id)}}">
+                    <span class="edit-btn" title="Edit">
+                      <i class="fas fa-edit"></i> <!-- Edit Icon -->
+                    </span>
+                  </a>
+                  <a href="{{ route('deleteAddress',$list->id)}}" onclick="return confirm('Are you sure you want to delete this Address?')">
+                    <span class="delete-btn" title="Delete">
+                      <i class="fas fa-trash"></i> <!-- Delete Icon -->
+                    </span>
+                  </a>
+                  </div>
+                </div>
+              </div>
             </div>
-</div>
+          @endforeach 
+          
+      </div>
+    </div>
+  </div>
+  </div>
 
-<script src="https://cdn.datatables.net/2.1.8/js/dataTables.min.js"></script>
 
-<script>
-  let table = new DataTable('#myTable');
-  </script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
-<script>
-        $(document).ready(function() {
-            $('.toggle-class').bootstrapToggle();
-        });
-    </script>
-<script>
-    $('.toggle-class').on("change", function() {
-        var status = $(this).prop('checked') == true ? 1 : 0;
-        var id = $(this).data('id');
-        
-        
-        $.ajax({
-            type: "POST",
-            dataType: "json",
-            url: "<?php echo url('/addressStatus'); ?>",
-            data: {
-                _token: '{{ csrf_token() }}',
-                'status': status,
-                'id': id,
-               
-            },
-            success: function(data) {
-                if (data.success) {
-                    toastr.success('Status changed successfully');
-                   // location.reload();
 
-                } else {
-                    toastr.error('Failed to change status');
-                    //location.reload();
-                }
-            },
-        });
-    });
-</script>
+
 @endsection

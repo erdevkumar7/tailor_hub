@@ -50,28 +50,28 @@
                             <div class="row">
                                 <div class="col-md-3">
                                     <div class="item">
-                                        <img src="https://votivelaravel.in/tailor_hub/public/front_assets/images/design2.png" alt="Category 1" />
+                                        <img src="{{ url('/public') }}/front_assets/images/design2.png" alt="Category 1" />
                                         <h3>Category 1</h3>
                                         <p>Top products 1</p>
                                     </div>
                                 </div>
                                 <div class="col-md-3">
                                     <div class="item">
-                                        <img src="https://votivelaravel.in/tailor_hub/public/front_assets/images/cloth-one.jpg" alt="Category 2" />
+                                        <img src="{{ url('/public') }}/front_assets/images/cloth-one.jpg" alt="Category 2" />
                                         <h3>Category 2</h3>
                                         <p>Top products 2</p>
                                     </div>
                                 </div>
                                 <div class="col-md-3">
                                     <div class="item">
-                                        <img src="https://votivelaravel.in/tailor_hub/public/front_assets/images/fashion.jpg" alt="Category 3" />
+                                        <img src="{{ url('/public') }}/front_assets/images/fashion.jpg" alt="Category 3" />
                                         <h3>Category 3</h3>
                                         <p>Top products 3</p>
                                     </div>
                                 </div>
                                 <div class="col-md-3">
                                     <div class="item">
-                                        <img src="https://votivelaravel.in/tailor_hub/public/front_assets/images/design2.png" alt="Category 1" />
+                                        <img src="{{ url('/public') }}/front_assets/images/design2.png" alt="Category 1" />
                                         <h3>Category 1</h3>
                                         <p>Top products 1</p>
                                     </div>
@@ -82,28 +82,28 @@
                             <div class="row">
                                 <div class="col-md-3">
                                     <div class="item">
-                                        <img src="https://votivelaravel.in/tailor_hub/public/front_assets/images/design2.png" alt="Category 1" />
+                                        <img src="{{ url('/public') }}/front_assets/images/design2.png" alt="Category 1" />
                                         <h3>Category 1</h3>
                                         <p>Top products 1</p>
                                     </div>
                                 </div>
                                 <div class="col-md-3">
                                     <div class="item">
-                                        <img src="https://votivelaravel.in/tailor_hub/public/front_assets/images/cloth-one.jpg" alt="Category 2" />
+                                        <img src="{{ url('/public') }}/front_assets/images/cloth-one.jpg" alt="Category 2" />
                                         <h3>Category 2</h3>
                                         <p>Top products 2</p>
                                     </div>
                                 </div>
                                 <div class="col-md-3">
                                     <div class="item">
-                                        <img src="https://votivelaravel.in/tailor_hub/public/front_assets/images/fashion.jpg" alt="Category 3" />
+                                        <img src="{{ url('/public') }}/front_assets/images/fashion.jpg" alt="Category 3" />
                                         <h3>Category 3</h3>
                                         <p>Top products 3</p>
                                     </div>
                                 </div>
                                 <div class="col-md-3">
                                     <div class="item">
-                                        <img src="https://votivelaravel.in/tailor_hub/public/front_assets/images/design2.png" alt="Category 1" />
+                                        <img src="{{ url('/public') }}/front_assets/images/design2.png" alt="Category 1" />
                                         <h3>Category 1</h3>
                                         <p>Top products 1</p>
                                     </div>
@@ -114,28 +114,28 @@
                             <div class="row">
                                 <div class="col-md-3">
                                     <div class="item">
-                                        <img src="https://votivelaravel.in/tailor_hub/public/front_assets/images/design2.png" alt="Category 1" />
+                                        <img src="{{ url('/public') }}/front_assets/images/design2.png" alt="Category 1" />
                                         <h3>Category 1</h3>
                                         <p>Top products 1</p>
                                     </div>
                                 </div>
                                 <div class="col-md-3">
                                     <div class="item">
-                                        <img src="https://votivelaravel.in/tailor_hub/public/front_assets/images/cloth-one.jpg" alt="Category 2" />
+                                        <img src="{{ url('/public') }}/front_assets/images/cloth-one.jpg" alt="Category 2" />
                                         <h3>Category 2</h3>
                                         <p>Top products 2</p>
                                     </div>
                                 </div>
                                 <div class="col-md-3">
                                     <div class="item">
-                                        <img src="https://votivelaravel.in/tailor_hub/public/front_assets/images/fashion.jpg" alt="Category 3" />
+                                        <img src="{{ url('/public') }}/front_assets/images/fashion.jpg" alt="Category 3" />
                                         <h3>Category 3</h3>
                                         <p>Top products 3</p>
                                     </div>
                                 </div>
                                 <div class="col-md-3">
                                     <div class="item">
-                                        <img src="https://votivelaravel.in/tailor_hub/public/front_assets/images/design2.png" alt="Category 1" />
+                                        <img src="{{ url('/public') }}/front_assets/images/design2.png" alt="Category 1" />
                                         <h3>Category 1</h3>
                                         <p>Top products 1</p>
                                     </div>
@@ -159,25 +159,25 @@
 
                 <div class="product-list">
                     <div class="product-card">
-                        <img src="https://votivelaravel.in/tailor_hub/public/front_assets/images/cloth-one.jpg" alt="" />
+                        <img src="{{ url('/public') }}/front_assets/images/cloth-one.jpg" alt="" />
                         <p>Product 1 Name</p>
                         <span>$50</span>
                         <button>Add to Cart</button>
                     </div>
                     <div class="product-card">
-                        <img src="https://votivelaravel.in/tailor_hub/public/front_assets/images/fashion.jpg" alt="" />
+                        <img src="{{ url('/public') }}/front_assets/images/fashion.jpg" alt="" />
                         <p>Product 2 Name</p>
                         <span>$75</span>
                         <button>Add to Cart</button>
                     </div>
                     <div class="product-card">
-                        <img src="https://votivelaravel.in/tailor_hub/public/front_assets/images/cloth-one.jpg" alt="" />
+                        <img src="{{ url('/public') }}/front_assets/images/cloth-one.jpg" alt="" />
                         <p>Product 3 Name</p>
                         <span>$100</span>
                         <button>Add to Cart</button>
                     </div>
                     <div class="product-card">
-                        <img src="https://votivelaravel.in/tailor_hub/public/front_assets/images/design2.png" alt="" />
+                        <img src="{{ url('/public') }}/front_assets/images/design2.png" alt="" />
                         <p>Product 4 Name</p>
                         <span>$125</span>
                         <button>Add to Cart</button>
@@ -194,7 +194,7 @@
                             <div class="row">
                                 <div class="col-md-3">
                                     <div class="card">
-                                        <img src="https://votivelaravel.in/tailor_hub/public/front_assets/images/fashion.jpg" class="card-img-top" alt="Product 1" />
+                                        <img src="{{ url('/public') }}/front_assets/images/fashion.jpg" class="card-img-top" alt="Product 1" />
                                         <div class="card-body text-center">
                                             <h5 class="card-title">Product 1</h5>
                                             <p class="card-text">Description of Product 1</p>
@@ -203,7 +203,7 @@
                                 </div>
                                 <div class="col-md-3">
                                     <div class="card">
-                                        <img src="https://votivelaravel.in/tailor_hub/public/front_assets/images/cloth-one.jpg" class="card-img-top" alt="Product 2" />
+                                        <img src="{{ url('/public') }}/front_assets/images/cloth-one.jpg" class="card-img-top" alt="Product 2" />
                                         <div class="card-body text-center">
                                             <h5 class="card-title">Product 2</h5>
                                             <p class="card-text">Description of Product 2</p>
@@ -212,7 +212,7 @@
                                 </div>
                                 <div class="col-md-3">
                                     <div class="card">
-                                        <img src="https://votivelaravel.in/tailor_hub/public/front_assets/images/design2.png" class="card-img-top" alt="Product 3" />
+                                        <img src="{{ url('/public') }}/front_assets/images/design2.png" class="card-img-top" alt="Product 3" />
                                         <div class="card-body text-center">
                                             <h5 class="card-title">Product 3</h5>
                                             <p class="card-text">Description of Product 3</p>
@@ -221,7 +221,7 @@
                                 </div>
                                 <div class="col-md-3">
                                     <div class="card">
-                                        <img src="https://votivelaravel.in/tailor_hub/public/front_assets/images/cloth-one.jpg" class="card-img-top" alt="Product 2" />
+                                        <img src="{{ url('/public') }}/front_assets/images/cloth-one.jpg" class="card-img-top" alt="Product 2" />
                                         <div class="card-body text-center">
                                             <h5 class="card-title">Product 2</h5>
                                             <p class="card-text">Description of Product 2</p>
@@ -235,7 +235,7 @@
                             <div class="row">
                                 <div class="col-md-3">
                                     <div class="card">
-                                        <img src="https://votivelaravel.in/tailor_hub/public/front_assets/images/fashion.jpg" class="card-img-top" alt="Product 1" />
+                                        <img src="{{ url('/public') }}/front_assets/images/fashion.jpg" class="card-img-top" alt="Product 1" />
                                         <div class="card-body text-center">
                                             <h5 class="card-title">Product 1</h5>
                                             <p class="card-text">Description of Product 1</p>
@@ -244,7 +244,7 @@
                                 </div>
                                 <div class="col-md-3">
                                     <div class="card">
-                                        <img src="https://votivelaravel.in/tailor_hub/public/front_assets/images/cloth-one.jpg" class="card-img-top" alt="Product 2" />
+                                        <img src="{{ url('/public') }}/front_assets/images/cloth-one.jpg" class="card-img-top" alt="Product 2" />
                                         <div class="card-body text-center">
                                             <h5 class="card-title">Product 2</h5>
                                             <p class="card-text">Description of Product 2</p>
@@ -253,7 +253,7 @@
                                 </div>
                                 <div class="col-md-3">
                                     <div class="card">
-                                        <img src="https://votivelaravel.in/tailor_hub/public/front_assets/images/design2.png" class="card-img-top" alt="Product 3" />
+                                        <img src="{{ url('/public') }}/front_assets/images/design2.png" class="card-img-top" alt="Product 3" />
                                         <div class="card-body text-center">
                                             <h5 class="card-title">Product 3</h5>
                                             <p class="card-text">Description of Product 3</p>
@@ -262,7 +262,7 @@
                                 </div>
                                 <div class="col-md-3">
                                     <div class="card">
-                                        <img src="https://votivelaravel.in/tailor_hub/public/front_assets/images/cloth-one.jpg" class="card-img-top" alt="Product 2" />
+                                        <img src="{{ url('/public') }}/front_assets/images/cloth-one.jpg" class="card-img-top" alt="Product 2" />
                                         <div class="card-body text-center">
                                             <h5 class="card-title">Product 2</h5>
                                             <p class="card-text">Description of Product 2</p>

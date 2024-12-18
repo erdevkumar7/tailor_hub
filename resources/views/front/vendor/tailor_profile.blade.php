@@ -28,7 +28,7 @@
                                 <h4 class="card-title">Profile Update</h4>
                                 <p class="card-description">{{ $vendor->vendor_type == 1 ? 'Tailor' : ($vendor->vendor_type == 2 ? 'Fabric Seller' : 'Tailor & Fabric Seller') }}
                                 </p>
-                                <form class="profile-input-form customer-profile-form" action="{{ url('/updateProfile') }}" id="profile_form" enctype="multipart/form-data" method="POST">
+                                <form class="profile-input-form customer-profile-form" action="{{ url('/updateProfile') }}" id="course_form" enctype="multipart/form-data" method="POST">
                                 @csrf
                                     <div class="row customer-input-inner">
                                         <div class="col-md-6">
@@ -51,26 +51,26 @@
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                            <label for="exampleInputName2">Mobile Number</label>
-                                            <input type="text" class="form-control" name="mobile_number" id="exampleInputName2" placeholder="Mobile Number" value="{{ $vendor->mobile_no }}" readonly/>
+                                            <label for="exampleInputNamedd4">Mobile Number</label>
+                                            <input type="text" class="form-control" name="mobile_number" id="exampleInputNamedd4" placeholder="Mobile Number" value="{{ $vendor->mobile_no }}"  {{ $vendor->mobile_no==''?'':'readonly' }}/>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label for="exampleInputName2">Business Name</label>
-                                                <input type="text" class="form-control" name="business_name" id="exampleInputName2" placeholder="Business Name" value="{{ $vendor->business_name }}" />
+                                                <label for="exampleInputName5">Business Name</label>
+                                                <input type="text" class="form-control" name="business_name" id="exampleInputName5" placeholder="Business Name" value="{{ $vendor->business_name }}" />
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <label for="exampleTextarea1">Experience (In Year)</label>
-                                                    <input type="text" class="form-control" name="experience" id="exampleInputName2" placeholder="Experience (In Year)" value="{{ $vendor->experience }}"/>
+                                                    <label for="exampleTextarea6">Experience (In Year)</label>
+                                                    <input type="text" class="form-control" name="experience" id="exampleTextarea6" placeholder="Experience (In Year)" value="{{ $vendor->experience }}"/>
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                             <div class="form-group">
-                                                <label for="exampleTextarea1">Profile Description(Short)</label>
-                                                <textarea class="form-control" name="short_description" id="exampleTextarea1" rows="4">{{ $vendor->short_description }}</textarea>
+                                                <label for="exampleTextarea11">Profile Description(Short)</label>
+                                                <textarea class="form-control" name="short_description" id="exampleTextarea11" rows="4">{{ $vendor->short_description }}</textarea>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
@@ -145,16 +145,16 @@
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <label for="exampleTextarea1">Postal Code</label>
-                                                    <input type="text" class="form-control" name="zipcode" id="exampleInputName2" placeholder="Postal Code" value="{{ $vendor->zip_code }}"/>
+                                                    <label for="exampleTextarea15">Postal Code</label>
+                                                    <input type="text" class="form-control" name="zipcode" id="exampleTextarea15" placeholder="Postal Code" value="{{ $vendor->zip_code }}"/>
                                                 </div>
                                             </div>
                                             
                                             
                                         <div class="col-md-12">
                                             <div class="form-group">
-                                                <label for="exampleTextarea1">Address</label>
-                                                <textarea class="form-control" name="address" id="exampleTextarea1" rows="4">{{ $vendor->address }}</textarea>
+                                                <label for="exampleTextarea22">Address</label>
+                                                <textarea class="form-control" name="address" id="exampleTextarea22" rows="4">{{ $vendor->address }}</textarea>
                                             </div>
                                         </div>
                                         
@@ -173,7 +173,8 @@
         <div class="card-body">
             <h4>Profile Image</h4>
               <label for="profile-image" class="upload-label" style="cursor: pointer;">
-                <img id="preview" src="{{ $vendor->profile_img==''?'https://votivelaravel.in/tailor_hub/public/front_assets/images/design2.png': url('/public/upload').'/'.$vendor->profile_img }} " alt="Profile Image" style="width: 100%; max-width: 200px; border: 1px dashed #ccc; padding: 10px;" />
+                
+                <img id="preview" src="{{ empty($vendor->profile_img) ? asset('front_assets/images/design2.png') : url('/public').'/upload/'.$vendor->profile_img }} " alt="Profile Image" style="width: 100%; max-width: 200px; border: 1px dashed #ccc; padding: 10px;" />
                 <span>Please Upload Image</span>
               </label>
               <input type="file" id="profile-image" name="img" style="display: none;" accept="image/*" />
@@ -197,7 +198,67 @@
         }
     });
 </script>
+<script>
+window.addEventListener('load', function() {
+    $("#course_form").validate({
+        rules: {
+            name: { required: true },
+            last_name: { required: true },
+            email: {
+                required: true,
+                email: true
+            },
+            mobile_number: { required: true },
+            business_name: { required: true },
+            experience: { required: true },
+            short_description: { required: true },
+            long_description: { required: true },
+            vendor_type: { required: true },
+            selected_ids: { 
+                requiredMultiSelect: true,
+                
+            },
+            country_id: { required: true },
+            state_id: { required: true },
+            city_id: { required: true },
+            zipcode: { required: true },
+            address: { required: true },
+        },
+        messages: {
+            name: { required: "First name is required" },
+            last_name: { required: "Last name is required" },
+            email: { required: "Email is required", email: "Enter a valid email" },
+            mobile_number: { required: "Mobile number is required" },
+            business_name: { required: "Business Name is required" },
+            experience: { required: "Experience is required" },
+            short_description: { required: "Short Description is required" },
+            long_description: { required: "Long Description is required" },
+            vendor_type:{ required: "Vendor Type is required" },
+            selected_ids:{ 
+                requiredMultiSelect: "Please select at least one speciality.", 
+                
+            },
+            country_id:{ required: "Country is required" },
+            state_id:{ required: "State is required" },
+            city_id:{ required: "City is required" },
+            zipcode:{ required: "Postal Code is required" },
+            address:{ required: "Address is required" },
+        },
+        errorElement: 'span',
+        errorPlacement: function(error, element) {
+        if (element.hasClass('mySelect')) {
+            error.addClass('invalid-feedback');
+            error.insertAfter(element.next('.select2-container'));
+        } else {
+            error.addClass('invalid-feedback');
+            error.insertAfter(element);
+        }
+    },
+    });
+});
 
+
+</script>
                 </div>
             </div>
         </div>
@@ -261,6 +322,7 @@
         var placeholder = "Select options";
 
         $(".mySelect").select2({
+            width: '100%',
             data: data,
             placeholder: placeholder,
             allowClear: false,

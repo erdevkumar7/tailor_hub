@@ -56,22 +56,36 @@ Route::get('/', [HomeController::class, 'index']);
 Route::post('/store-location', [HomeController::class, 'storeLocation'])->name('store.location');
 Route::any('/searchN', [HomeController::class, 'searchHome'])->name('searchHome');
 /*****************************[Fabric seller search]****************************************/
+Route::any('/browseFebrics', [HomeController::class, 'browseFebrics'])->name('browseFebrics');
+Route::any('/febricMarchent/{id}', [HomeController::class, 'febricMarchent'])->name('febricMarchent');
 
 Route::any('/exploreProducts', [ProductController::class, 'exploreProducts'])->name('exploreProducts');  //Erdev
 Route::any('/productMarchent/{category_id}', [ProductController::class, 'machentByCategoryId'])->name('product.MachentByCategoryId'); //ErDev
 
-Route::any('/browseFebrics', [HomeController::class, 'browseFebrics'])->name('browseFebrics');
-Route::any('/febricMarchent/{id}', [HomeController::class, 'febricMarchent'])->name('febricMarchent');
 Route::any('/productDetail/{id}', [HomeController::class, 'productDetail'])->name('productDetail');
+/*****************************[Catalogue Tailor  search]****************************************/
+Route::any('/exploredesign', [HomeController::class, 'exploredesign'])->name('exploredesign');
+Route::any('/tailor_design/{id}', [HomeController::class, 'tailor_design'])->name('tailor_design');
+Route::any('/catalogueDetail/{id}', [HomeController::class, 'catalogueDetail'])->name('catalogueDetail');
+
 /*****************************[Tailor search]****************************************/
 Route::get('/AllTailors', [HomeController::class, 'searchTailor']);
 Route::get('/tailorDetails/{id}', [HomeController::class, 'tailorDetails']);
+Route::post('/likeVendor', [HomeController::class, 'likeVendor']);
+Route::get('/tailorCatalogue/{id}/{category_id?}', [HomeController::class, 'tailorCatalogue']);
 
-//demo code route 
+//demo code route
 //Route::get('/customerProfiles', [HomeController::class, 'customerProfile']);
 Route::get('/productList', [HomeController::class, 'productList']);
 Route::get('/vendorDash', [HomeController::class, 'vendorDash']);
 Route::get('/orderDetail', [HomeController::class, 'orderDetail']);
+Route::get('/wishlist', [HomeController::class, 'wishlist']);
+Route::get('/message', [HomeController::class, 'message']);
+Route::get('/support', [HomeController::class, 'support']);
+Route::get('/order_history', [HomeController::class, 'order_history']);
+//Route::get('/shipping_add', [HomeController::class, 'shipping_add']);
+//Route::get('/shipping_view', [HomeController::class, 'shipping_view']);
+
 
 //Route::get('/AllTailors', [TailorController::class, 'index']);
 //Route::get('/tailorDetails', [TailorController::class, 'tailorDetails']);
@@ -83,10 +97,9 @@ Route::group(['middleware'=>['web','checkUser']],function(){
     Route::post('/profile_update', [CustomerController::class, 'profile_update']);
 	Route::get('/customerDashboard',[CustomerController::class, 'customerDashboard']);
 
-    Route::get('/customerWishlist', [CustomerController::class, 'customerWishList'])->name('customer.wishList');  //Erdev
-    
     Route::any('/addShipping/{id?}',[CustomerController::class, 'addShipping'])->name('addShipping');
     Route::any('/viewAddress',[CustomerController::class, 'viewShippingAddress']);
+	Route::any('/shippingAddress',[CustomerController::class, 'shippingAddressList']);
     Route::post('/addressStatus',[CustomerController::class, 'addressStatus'])->name('addressStatus');
     Route::get('/deleteAddress/{id}',[CustomerController::class, 'deleteAddress'])->name('deleteAddress');
     Route::get('/mesurment', [CustomerController::class, 'mesurment']);
@@ -117,7 +130,7 @@ Route::group(['middleware'=>['vendor']],function(){
 
 	Route::any('/addDocument/{id?}',[VendorController::class, 'addDocument']);
     Route::get('/deleteDoc/{id}',[VendorController::class, 'deleteDoc'])->name('deleteDoc');
-    
+
 
 });
 /****************************[VENDOR AUTH END]*************************************/
@@ -189,7 +202,7 @@ Route::group(['middleware'=>['web','checkAdmin']],function(){
     Route::any('/admin/addSpeciality/{id?}', [MasterController::class, 'addSpeciality'])->name('addSpeciality');
     Route::post('/admin/changeSpecialityStatus', [MasterController::class, 'changeSpecialityStatus'])->name('changeSpecialityStatus');
     Route::get('/admin/deleteSpeciality/{id}', [MasterController::class, 'deleteSpeciality'])->name('deleteSpeciality');
-	
+
 	Route::get('/admin/getFebricType', [MasterController::class, 'getFebricType'])->name('getFebricType');
     Route::any('/admin/addFebricType/{id?}', [MasterController::class, 'addFebricType'])->name('addFebricType');
     Route::post('/admin/changeFebricTypeStatus', [MasterController::class, 'changeFebricTypeStatus'])->name('changeFebricTypeStatus');
@@ -199,7 +212,7 @@ Route::group(['middleware'=>['web','checkAdmin']],function(){
     Route::any('/admin/addPlan/{id?}', [MasterController::class, 'addPlan'])->name('addPlan');
     Route::post('/admin/changePlanStatus', [MasterController::class, 'changePlanStatus'])->name('changePlanStatus');
     Route::get('/admin/deletePlan/{id}', [MasterController::class, 'deletePlan'])->name('deletePlan');
-	
+
 	Route::get('/admin/getCategory', [MasterController::class, 'getCategory'])->name('getCategory');
     Route::any('/admin/addCategory/{id?}', [MasterController::class, 'addCategory'])->name('addCategory');
     Route::post('/admin/changeCategoryStatus', [MasterController::class, 'changeCategoryStatus'])->name('changeCategoryStatus');
@@ -209,7 +222,7 @@ Route::group(['middleware'=>['web','checkAdmin']],function(){
     Route::any('/admin/privacyPolicy', [CmsController::class, 'privacyPolicy'])->name('privacyPolicy');
     Route::any('/admin/aboutUs', [CmsController::class, 'aboutUs'])->name('aboutUs');
     Route::any('/admin/termsConditions', [CmsController::class, 'termsConditions'])->name('termsConditions');
-	
+
 	/********************[Vendor Document Route ]*************************/
     Route::any('/admin/listDocument', [CmsController::class, 'listDocument'])->name('listDocument');
     Route::get('/admin/deleteDocument/{id}', [CmsController::class, 'deleteDocument'])->name('deleteDocument');

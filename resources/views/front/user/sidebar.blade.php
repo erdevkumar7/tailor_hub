@@ -48,7 +48,7 @@
         <a class="nav-link" href="{{url('addShipping')}}">Add Address</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="{{url('viewAddress')}}">View Address</a>
+        <a class="nav-link" href="{{url('shippingAddress')}}">View Address</a>
       </li>
     </ul>
   </div>

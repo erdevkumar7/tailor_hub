@@ -1,6 +1,6 @@
 @extends('admin.layouts.layout')
 
-@section('title','Category Master Form')
+@section('title','Febric Type Master Form')
 @section('admin-content')
 
 <style>
@@ -16,7 +16,7 @@
 
 <div class="right_col" role="main">
     <div class="">
-
+        
 
         <div class="clearfix"></div>
 
@@ -25,37 +25,27 @@
             <div class="col-md-12 customer-form-first">
                 <div class="x_panel">
                     <div class="x_title">
-                        <h2>Category Master </h2>
+                        <h2>Febric Type Master Form </h2>
                         <div class="clearfix"></div>
                     </div>
                     <div class="x_content">
                         <br />
-                        <form action="{{ url('admin/addCategory') }}" id="course_form" method="post" enctype="multipart/form-data" class="form-horizontal form-label-left">
+                        <form action="{{ url('admin/addFebricType') }}" id="course_form" method="post" enctype="multipart/form-data" class="form-horizontal form-label-left">
                         {!! csrf_field() !!}
                             <div class="form-group row">
                                 <!-- First row -->
                                 <div class="col-md-6">
-                                    <input type="hidden" name='category_id' value="{{ $cate_detail?$cate_detail->category_id:'' }}">
-                                    <label class="control-label">Category Name<span class="mandatory" style="color:red"> *</span></label>
-                                    <input type="text" class="form-control" placeholder="Enter Category Name" name="category_name" minlength="1" maxlength="20" value="{{ $cate_detail?$cate_detail->category_name:'' }}" >
-                                    @if ($errors->has('category_name'))
+                                    <input type="hidden" name='febric_type_id' value="{{ $febric_type_detail?$febric_type_detail->febric_type_id:'' }}">
+                                    <label class="control-label">Febric Type Name<span class="mandatory" style="color:red"> *</span></label>
+                                    <input type="text" class="form-control" placeholder="Enter Febric Type Name" name="febric_type_name" minlength="1" maxlength="20" value="{{ $febric_type_detail?$febric_type_detail->febric_type_name:'' }}" >
+                                    @if ($errors->has('febric_type_name'))
                                         <span class="" style="color:red">
-                                            {{ $errors->first('category_name') }}
-                                        </span>
-                                    @endif
-                                </div>
-                                <div class="col-md-6">
-
-                                    <label class="control-label">Category Image<span class="mandatory" style="color:red"> *</span></label>
-                                    <input type="file" class="form-control"  name="category_image"  value="" >
-                                    @if ($errors->has('category_image'))
-                                        <span class="" style="color:red">
-                                            {{ $errors->first('category_image') }}
+                                            {{ $errors->first('febric_type_name') }}
                                         </span>
                                     @endif
                                 </div>
                             </div>
-
+                            
                                 <div class="form-group row">
                                     <div class="col-md-12 go-back-btn mt-3">
                                         <button type="submit" class="btn btn-primary">Submit</button>
@@ -76,12 +66,12 @@
 window.addEventListener('load', function() {
     $("#course_form").validate({
         rules: {
-            category_name: { required: true },
-
+            febric_type_name: { required: true },
+                
             },
             messages: {
-                category_name: { required: "Category name is required" },
-
+                febric_type_name: { required: "Febric Type name is required" },
+                
 
             },
             errorElement: 'span',

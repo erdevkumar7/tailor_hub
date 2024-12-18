@@ -3,7 +3,7 @@
 <div class="banner-tailors">
     <div class="container browse-tailors">
         <div class="row browse-content">
-            <h1 class="text-white">Product Detail</h1>
+            <h1 class="text-white">Catalogue Detail</h1>
         </div>
     </div>
 </div>
@@ -12,24 +12,21 @@
     <div class="row product-detail-page">
         <div class="col-lg-6 product-summary-left">
             <!-- Main Product Image -->
-             <h1>{{@$product->vendor->name}}</h1>
+
+             <h1>{{@$catalogue->vendor->name}}</h1>
             <div class="main-product-image">
-                <img id="main-product-image" src="{{url('public/Productupload',$product->product_image)}}" alt="Main Product" class="" />
+
+                <img id="main-product-image" src="{{url('public/upload/catalogue',$catalogue_image->catalogue_image)}}" alt="Main Product" class="" />
             </div>
 
             <!-- Related Product Images -->
             <div class="related-product-images mt-3">
                 <div class="row product-images-inner">
-                    <div class="col-3 one related-product-one">
-                        <a href="javascript:void(0);">
-                            <img src="{{url('public/Productupload',$product->product_image)}}" alt="Related Product 1" class="related-product-img" />
-                        </a>
-                    </div>
-                @if(!empty($productImages) && count($productImages) > 0)
-                @foreach($productImages as $index => $image)
+                @if(!empty($related_image) && count($related_image) > 0)
+                @foreach($related_image as $index => $image)
                 <div class="col-3 one related-product-one">
                         <a href="javascript:void(0);">
-                            <img src="{{url('public/Productupload',$image->product_image)}}" alt="Related Product 1" class="related-product-img" />
+                            <img src="{{url('public/upload/catalogue',$image->catalogue_image)}}" alt="Related Product 1" class="related-product-img" />
                         </a>
                 </div>
                 @endforeach
@@ -41,9 +38,9 @@
         </div>
 
         <div class="col-lg-6 product-summary-right">
-            <h1 class="product_title entry-title">{{$product->product_name}}</h1>
-            <p class="price"><span>{{$product->product_price}}</span>{{$product->final_price}}</p>
-            
+            <h1 class="product_title entry-title">{{$catalogue->catalogue_name}}</h1>
+            <p class="price">{{$catalogue->start_price}}</p>
+
 
             <div class="quantity">
                 <div class="quantity-inner">
@@ -64,31 +61,33 @@
                 <li><i class="fa fa-check-circle"></i>Secure Payments</li>
             </ul>
             <h6 class="mt-3"><u>Description</u></h6>
-            <p class="dolor-text">{{$product->product_details}}</p>
+            <p class="dolor-text">{{$catalogue->description}}</p>
         </div>
     </div>
 
- 
+
     <div class="container related-products-list">
-        <h1 class="inner-detail-pdc">Related Products</h1>
-   <img src="{{url('public/front_assets/images/Line.png')}}">
+        <h1 class="inner-detail-pdc">Related Catalogue</h1>
+   <img src="https://votivelaravel.in/tailor_hub/public/front_assets/images/Line.png">
         <div class="row related-products">
-        @if(!empty($relatedvendor) && count($relatedvendor) > 0)
-        @foreach($relatedvendor as $index => $value)
+        @if(!empty($relatedcatalogue) && count($relatedcatalogue) > 0)
+        @foreach($relatedcatalogue as $index => $value)
         <div class="col-md-3 col-sm-6 product-item">
+
+
                 <div class="product-wrap">
                     <div class="product-img img-zoom">
                         <a href="#">
-                            <img class="img-fluid w-100" src="{{url('public/Productupload',$value->product_image)}}" alt="" />
+                            <img class="img-fluid w-100" src="{{url('public/upload/catalogue',$value->catalogue_image)}}" alt="" />
                         </a>
                     </div>
                     <div class="product-content text-center">
                      <span class="review-rating">★★★★★</span>
 
-                        <h3><a href="#">{{@$value->vendor->name}}</a></h3>
+                        <h3><a href="#">{{@$catalogue->vendor->name}}</a></h3>
                         <div class="product-price">
-                            <span>{{$value->final_price}}</span>
-                                                
+                            <span>{{$value->start_price}}</span>
+
 
                         </div>
                     </div>

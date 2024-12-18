@@ -16,7 +16,7 @@
 
 <div class="right_col" role="main">
     <div class="">
-
+        
 
         <div class="clearfix"></div>
 
@@ -44,18 +44,8 @@
                                         </span>
                                     @endif
                                 </div>
-                                <div class="col-md-6">
-
-                                    <label class="control-label">Category Image<span class="mandatory" style="color:red"> *</span></label>
-                                    <input type="file" class="form-control"  name="category_image"  value="" >
-                                    @if ($errors->has('category_image'))
-                                        <span class="" style="color:red">
-                                            {{ $errors->first('category_image') }}
-                                        </span>
-                                    @endif
-                                </div>
                             </div>
-
+                            
                                 <div class="form-group row">
                                     <div class="col-md-12 go-back-btn mt-3">
                                         <button type="submit" class="btn btn-primary">Submit</button>
@@ -77,11 +67,11 @@ window.addEventListener('load', function() {
     $("#course_form").validate({
         rules: {
             category_name: { required: true },
-
+                
             },
             messages: {
                 category_name: { required: "Category name is required" },
-
+                
 
             },
             errorElement: 'span',

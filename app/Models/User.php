@@ -38,9 +38,4 @@ class User extends Authenticatable
         'user_status',
         'is_deleted',
     ];
-
-    public function wishlists()
-    {
-        return $this->hasMany(Wishlist::class, 'customer_id');
-    }
 }

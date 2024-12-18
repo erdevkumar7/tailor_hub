@@ -62,7 +62,16 @@ select#heard12 {
     padding-bottom: 0px;
 }
 
-
+img#upload_image_display {
+    width: 50px;
+    height: 40px !important;
+    margin-bottom: 8px;
+}
+img.img-responsive {
+    width: 50px;
+    height: 50px !important;
+    margin-bottom: 8px;
+}
 
 </style>
 
@@ -77,7 +86,7 @@ select#heard12 {
   <div class="">
     <div class="page-title">
       <div class="title_left">
-          
+
       </div>
 
 
@@ -101,6 +110,7 @@ select#heard12 {
                       <tr>
                         <th>S.No.</th>
                         <th>Febric Type</th>
+                        <th>Febric Image</th>
                         <th>Is active</th>
                         <th>Action</th>
                       </tr>
@@ -112,12 +122,20 @@ select#heard12 {
                       <tr>
                         <td>{{$i}}</td>
                         <td>{{$list->febric_type_name}}</td>
+                        <td>
+                                   <?php  if (!empty($list->febric_image)) { ?>
+                      <img src="{{ asset('public/upload/fabric/'. $list->febric_image) }}" id="upload_image_display" style="border-radius: 10px;" alt="brand image" height="50px" width="60px">
+                    <?php } else { ?>
+                        <img class="img-responsive"  style="border-radius: 10px;" src="{{ url('/') }}/public/admin/uploads/user/default.jpg" height="80px" width="100px" alt="profile_img">
+                    <?php } ?>
+                        </td>
+                        <!-- <td>{{$list->febric_image}}</td> -->
                         <td class="approve-btn">
                           <input data-id="{{$list->febric_type_id}}" class="toggle-class" type="checkbox" data-onstyle="success" data-offstyle="danger" data-toggle="toggle" data-on="Active" data-off="Inactive"
                             {{ $list->is_active ? 'checked' : '' }}>
                         </td>
                         <td>
-                          
+
                           <a href="{{ route('addFebricType',$list->febric_type_id)}}" class="btn btn-sm btn-warning"><i class="fa fa-edit"></i></a>
                           <a title="Delete Febric Type" class="btn btn-sm btn-danger" href="{{ route('deleteFebricType',$list->febric_type_id)}}" onclick="return confirm('Are you sure you want to delete this record?')"><i class="fa fa-trash"></i>
                         </td>
@@ -157,11 +175,11 @@ select#heard12 {
             success: function(data) {
                 if (data.success) {
                     toastr.success('Status changed successfully');
-                    
+
 
                 } else {
                     toastr.error('Failed to change status');
-                    
+
                 }
             },
         });

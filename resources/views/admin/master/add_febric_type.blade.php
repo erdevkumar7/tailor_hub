@@ -16,7 +16,7 @@
 
 <div class="right_col" role="main">
     <div class="">
-        
+
 
         <div class="clearfix"></div>
 
@@ -44,8 +44,17 @@
                                         </span>
                                     @endif
                                 </div>
+                                <div class="col-md-6">
+                                    <label class="control-label">Febric image<span class="mandatory" style="color:red"> *</span></label>
+                                    <input type="file" class="form-control" name="febric_image" value="{{ $febric_type_detail?$febric_type_detail->febric_image:'' }}" >
+                                    @if ($errors->has('febric_image'))
+                                        <span class="" style="color:red">
+                                            {{ $errors->first('febric_image') }}
+                                        </span>
+                                    @endif
+                                </div>
                             </div>
-                            
+
                                 <div class="form-group row">
                                     <div class="col-md-12 go-back-btn mt-3">
                                         <button type="submit" class="btn btn-primary">Submit</button>
@@ -67,11 +76,11 @@ window.addEventListener('load', function() {
     $("#course_form").validate({
         rules: {
             febric_type_name: { required: true },
-                
+
             },
             messages: {
                 febric_type_name: { required: "Febric Type name is required" },
-                
+
 
             },
             errorElement: 'span',
