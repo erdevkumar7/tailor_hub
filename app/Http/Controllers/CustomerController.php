@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Shipping;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Wishlist;
 use Session;
 use DB;
 
@@ -61,6 +62,17 @@ class CustomerController extends Controller
 		else{
 			return redirect()->to('/login');
 		}
+    }
+
+    public function customerWishList()
+    {
+        // $wishlistItems = DB::table('wishlists')->where('customer_id', auth('user')->id())->get();           
+        $wishlistItems = Wishlist::where('customer_id', auth('user')->id())
+            ->with('product')
+            ->get();    
+        // return response()->json($wishlistItems);
+
+        return view('front.user.wish_list', compact('wishlistItems'));
     }
 
     public function updateProfile(Request $request)

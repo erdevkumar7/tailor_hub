@@ -96,7 +96,7 @@ Route::group(['middleware'=>['web','checkUser']],function(){
     Route::any('/customerProfile', [CustomerController::class, 'updateProfile']);
     Route::post('/profile_update', [CustomerController::class, 'profile_update']);
 	Route::get('/customerDashboard',[CustomerController::class, 'customerDashboard']);
-
+    Route::get('/customerWishlist', [CustomerController::class, 'customerWishList'])->name('customer.wishList'); //Erdev
     Route::any('/addShipping/{id?}',[CustomerController::class, 'addShipping'])->name('addShipping');
     Route::any('/viewAddress',[CustomerController::class, 'viewShippingAddress']);
 	Route::any('/shippingAddress',[CustomerController::class, 'shippingAddressList']);
