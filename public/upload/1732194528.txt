@@ -1,11 +1,11 @@
-1 user middleware code change
-2 User layouts/header code change
-3 HomeController add logout function 
-4 logout route diffene
-6 create customer controller
-7 customer profile setting page and update
-8 User model diffine table name and primary Key
-9 vendor layouts/header code change
-10 Vendor model diffine table name and primary Key
-11 create Vendor middleware
+1 user middleware code change
+2 User layouts/header code change
+3 HomeController add logout function 
+4 logout route diffene
+6 create customer controller
+7 customer profile setting page and update
+8 User model diffine table name and primary Key
+9 vendor layouts/header code change
+10 Vendor model diffine table name and primary Key
+11 create Vendor middleware
 12 vendor profile setting page and update
