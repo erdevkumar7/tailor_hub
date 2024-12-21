@@ -12,6 +12,7 @@ class CustomerCartController extends Controller
 {
     public function productAddToCart(Request $request)
     {
+
         $customerId = auth('user')->id(); 
         $productId = $request->product_id;
         $quantity = $request->quantity ?? 1;
@@ -37,4 +38,5 @@ class CustomerCartController extends Controller
 
         return response()->json(['message' => 'Product added to cart successfully'], 201);
     }
+
 }

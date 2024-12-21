@@ -51,20 +51,20 @@
                 <div class="quantity">
                     <div class="quantity-inner">
                         <button class="minus" aria-label="Decrease">&minus;</button>
-                        <input type="number" class="input-box quantity-input" value="1" min="1" max="10" />
+                        <input type="number" class="input-box quantity-input" value="1" min="1"
+                            max="10" />
                         <button class="plus" aria-label="Increase">&plus;</button>
                     </div>
                     <div class="add-to-cart-btn">
-                        <a href="javascript:void(0)" 
-                           class="single_add_to_cart_button button alt product-add-to-cart" 
-                           data-product-id="{{ $product->id }}">Add to Cart</a>
+                        <a href="javascript:void(0)" class="single_add_to_cart_button button alt product-add-to-cart"
+                            data-product-id="{{ $product->id }}">Add to Cart</a>
                     </div>
-                
+
                     <script>
                         $(document).on('click', '.product-add-to-cart', function() {
                             const productId = $(this).data('product-id');
                             const quantity = $(this).closest('.quantity').find('.quantity-input').val();
-                            
+
                             $.ajax({
                                 url: "{{ route('customer.productAddToCart') }}",
                                 method: 'POST',
@@ -74,17 +74,20 @@
                                     _token: "{{ csrf_token() }}",
                                 },
                                 success: function(response) {
-                                    alert(response.message || 'Product added to cart successfully!');
+                                    if (response.message === undefined) {
+                                        alert('Please logged in to add products to the cart.')
+                                    } else {
+                                        alert(response.message);
+                                    }
                                 },
                                 error: function(xhr) {
                                     alert('Something went wrong. Please try again.');
                                 },
                             });
-                        });                
-                      
+                        });
                     </script>
                 </div>
-                
+
 
                 <p class="product-meta"><span>Category:</span>{{ @$categoryName->category_name }}</p>
                 <h6>Free shipping on orders over $50!</h6>
