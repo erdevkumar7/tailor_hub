@@ -5,13 +5,14 @@ use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\Admin\ManagementController;
 use App\Http\Controllers\Admin\MasterController;
 use App\Http\Controllers\Admin\CmsController;
-use App\Http\Controllers\CustomerCartController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\TailorController;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\CustomerCartController;
 use App\Http\Controllers\VendorController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\Admin\SupportController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -30,20 +31,20 @@ Route::get('/google/callback', [App\Http\Controllers\GoogleLoginController::clas
 Route::get('/google/redirectvend', [App\Http\Controllers\GoogleLoginController::class, 'redirectToGoogleVendor'])->name('google.redirectvend');
 Route::get('/google/callbackvendor', [App\Http\Controllers\GoogleLoginController::class, 'handleGoogleCallbackVendor'])->name('google.callbackvend');
 
-Route::get('/register', [HomeController::class, 'register']);
-Route::get('/login', [HomeController::class, 'login']);
-Route::get('/newlogin', [HomeController::class, 'newlogin']);
-Route::get('/newregister', [HomeController::class, 'newregister']);
+Route::get('/register',[HomeController::class, 'register']);
+Route::get('/login',[HomeController::class, 'login']);
+Route::get('/newlogin',[HomeController::class, 'newlogin']);
+Route::get('/newregister',[HomeController::class, 'newregister']);
 
 Route::post('/loginchk', [HomeController::class, 'loginchk'])->name('customerlogin');
-Route::any('/logout', [HomeController::class, 'logout']);
-// Route::get('/customer',[HomeController::class, 'customer']);
-Route::post('/signup', [HomeController::class, 'signup'])->name('signup');
+Route::any('/logout',[HomeController::class, 'logout']);
+
+Route::post('/signup',[HomeController::class, 'signup'])->name('signup');
 
 Route::any('/vendorLogin', [HomeController::class, 'vendorLogin'])->name('vendorLoginForm');
 Route::any('/vendorSignup', [HomeController::class, 'vendorSignup'])->name('vendorSignupForm');
 
-// Route::get('/vendors',[HomeController::class, 'vendors']);
+
 
 /**********************[ WEB SITE ROUTING END ]****************************/
 
@@ -65,12 +66,12 @@ Route::post('/cart/add-product', [CustomerCartController::class, 'productAddToCa
 Route::get('/cart/show-product', [CustomerCartController::class, 'productShowCart'])->name('customer.productShowCart'); //Erdev
 Route::any('/productMarchent/{category_id}', [ProductController::class, 'machentByCategoryId'])->name('product.MachentByCategoryId'); //ErDev
 
-
 Route::any('/productDetail/{id}', [HomeController::class, 'productDetail'])->name('productDetail');
 /*****************************[Catalogue Tailor  search]****************************************/
 Route::any('/exploredesign', [HomeController::class, 'exploredesign'])->name('exploredesign');
 Route::any('/tailor_design/{id}', [HomeController::class, 'tailor_design'])->name('tailor_design');
 Route::any('/catalogueDetail/{id}', [HomeController::class, 'catalogueDetail'])->name('catalogueDetail');
+Route::post('/saveDesignId', [CustomerCartController::class, 'saveDesignId'])->name('saveDesignId');
 
 /*****************************[Tailor search]****************************************/
 Route::get('/AllTailors', [HomeController::class, 'searchTailor']);
@@ -79,7 +80,7 @@ Route::post('/likeVendor', [HomeController::class, 'likeVendor']);
 Route::get('/tailorCatalogue/{id}/{category_id?}', [HomeController::class, 'tailorCatalogue']);
 
 //demo code route
-//Route::get('/customerProfiles', [HomeController::class, 'customerProfile']);
+
 Route::get('/productList', [HomeController::class, 'productList']);
 Route::get('/vendorDash', [HomeController::class, 'vendorDash']);
 Route::get('/orderDetail', [HomeController::class, 'orderDetail']);
@@ -87,52 +88,58 @@ Route::get('/wishlist', [HomeController::class, 'wishlist']);
 Route::get('/message', [HomeController::class, 'message']);
 Route::get('/support', [HomeController::class, 'support']);
 Route::get('/order_history', [HomeController::class, 'order_history']);
-//Route::get('/shipping_add', [HomeController::class, 'shipping_add']);
-//Route::get('/shipping_view', [HomeController::class, 'shipping_view']);
 
-
-//Route::get('/AllTailors', [TailorController::class, 'index']);
-//Route::get('/tailorDetails', [TailorController::class, 'tailorDetails']);
-//Route::get('/tailorDetails/{id}', [TailorController::class, 'tailorDetails']);
+Route::get('/view_cart', [HomeController::class, 'view_cart']);
 
 /****************************[CUSTOMER AUTH START]************************************/
-Route::group(['middleware' => ['web', 'checkUser']], function () {
+Route::group(['middleware'=>['web','checkUser']],function(){
     Route::any('/customerProfile', [CustomerController::class, 'updateProfile']);
     Route::post('/profile_update', [CustomerController::class, 'profile_update']);
-    Route::get('/customerDashboard', [CustomerController::class, 'customerDashboard']);
-    Route::get('/customerWishlist', [CustomerController::class, 'customerWishList'])->name('customer.wishList'); //Erdev   
-    Route::any('/addShipping/{id?}', [CustomerController::class, 'addShipping'])->name('addShipping');
-    Route::any('/viewAddress', [CustomerController::class, 'viewShippingAddress']);
-    Route::any('/shippingAddress', [CustomerController::class, 'shippingAddressList']);
-    Route::post('/addressStatus', [CustomerController::class, 'addressStatus'])->name('addressStatus');
-    Route::get('/deleteAddress/{id}', [CustomerController::class, 'deleteAddress'])->name('deleteAddress');
-    Route::get('/mesurment', [CustomerController::class, 'mesurment']);
+	Route::get('/customerDashboard',[CustomerController::class, 'customerDashboard']);
+	
+    Route::get('/customerWishlist', [CustomerController::class, 'customerWishList'])->name('customer.wishList'); //Erdev	
+    Route::any('/addShipping/{id?}',[CustomerController::class, 'addShipping'])->name('addShipping');
+    //Route::any('/viewAddress',[CustomerController::class, 'viewShippingAddress']);
+	Route::any('/shippingAddress',[CustomerController::class, 'shippingAddressList']);
+	Route::post('/defaultAddress',[CustomerController::class, 'defaultAddress']);
+    Route::post('/addressStatus',[CustomerController::class, 'addressStatus'])->name('addressStatus');
+    Route::get('/deleteAddress/{id}',[CustomerController::class, 'deleteAddress'])->name('deleteAddress');
+    
+	
+	Route::any('/createTicket',[CustomerController::class,'createTicket'])->name('createTicket');
+    Route::get('/ticketList', [CustomerController::class, 'supportTicketList']);    
+    Route::any('/ticketReply/{id}', [CustomerController::class, 'replySupportTicket'])->name('ticketReply');   
+	
+	Route::any('/mesurment/{id?}', [CustomerController::class, 'mesurment']);
+    Route::get('/viewMeasurment', [CustomerController::class, 'measurmentList']);
+    Route::get('/deleteMeasurment/{id}', [CustomerController::class, 'deleteMeasurment']);
+
 });
 /****************************[CUSTOMER AUTH END]************************************/
 
 /****************************[VENDOR AUTH START]************************************/
-Route::group(['middleware' => ['vendor']], function () {
-    Route::get('/vendorsDasboard', [VendorController::class, 'vendorDashboard']);
-    // Route::get('/ProfileSetting', [VendorController::class, 'ProfileSetting']);
-    //Route::post('/profile_update', [VendorController::class, 'profile_update']);
-
+Route::group(['middleware'=>['vendor']],function(){
+    Route::get('/vendorsDasboard',[VendorController::class, 'vendorDashboard']);
+   
     Route::any('/updateProfile', [VendorController::class, 'updateProfile']);
 
-    Route::get('/vendorProduct', [VendorController::class, 'vendorProduct']);
-    Route::post('/productStatus', [VendorController::class, 'productStatus']);
-    Route::get('/deleteProduct/{id}', [VendorController::class, 'deleteProduct'])->name('deleteProduct');
-    Route::any('/addProduct/{id?}', [VendorController::class, 'addProduct'])->name('addProduct');
-    Route::post('/finalPrice', [VendorController::class, 'finalPrice']);
+    Route::get('/vendorProduct',[VendorController::class, 'vendorProduct']);
+    Route::post('/productStatus',[VendorController::class, 'productStatus']);
+    Route::get('/deleteProduct/{id}',[VendorController::class, 'deleteProduct'])->name('deleteProduct');
+    Route::any('/addProduct/{id?}',[VendorController::class, 'addProduct'])->name('addProduct');
+    Route::post('/finalPrice',[VendorController::class, 'finalPrice']);
 
 
     // Tailor section =============================================================================================
 
-    Route::any('/addCatalogue/{id?}', [VendorController::class, 'addCatalogue']);
-    Route::get('/Catalogue', [VendorController::class, 'Catalogue']);
-    Route::post('/catalogueStatus', [VendorController::class, 'catalogueStatus']);
+    Route::any('/addCatalogue/{id?}',[VendorController::class, 'addCatalogue']);
+    Route::get('/Catalogue',[VendorController::class, 'Catalogue']);
+    Route::post('/catalogueStatus',[VendorController::class, 'catalogueStatus']);
 
-    Route::any('/addDocument/{id?}', [VendorController::class, 'addDocument']);
-    Route::get('/deleteDoc/{id}', [VendorController::class, 'deleteDoc'])->name('deleteDoc');
+	Route::any('/addDocument/{id?}',[VendorController::class, 'addDocument']);
+    Route::get('/deleteDoc/{id}',[VendorController::class, 'deleteDoc'])->name('deleteDoc');
+
+
 });
 /****************************[VENDOR AUTH END]*************************************/
 // ===================================================================================================
@@ -148,7 +155,7 @@ Route::get('/adminLogout', [AuthController::class, 'adminLogout'])->name('adminL
 
 
 
-Route::group(['middleware' => ['web', 'checkAdmin']], function () {
+Route::group(['middleware'=>['web','checkAdmin']],function(){
     Route::get('/admin/dashboard', [AuthController::class, 'admindashboard'])->name('admindashboard');
     Route::get('/admin/customer-list', [ManagementController::class, 'customer_list'])->name('admin.customer_list');
     Route::get('/admin/customer-form', [ManagementController::class, 'customerForm'])->name('admin.customer_form');
@@ -166,15 +173,15 @@ Route::group(['middleware' => ['web', 'checkAdmin']], function () {
     Route::get('/admin/vip-customer-edit/{id}', [ManagementController::class, 'vipCustomeredit'])->name('admin.vip_customer_edit');
     Route::post('/admin/vipcustomer_formAction', [ManagementController::class, 'vipCustomerFormAction'])->name('admin.vipcustomerFormAction');
 
-    //tailor management
-    Route::get('/admin/tailor-list', [ManagementController::class, 'tailor_list'])->name('admin.tailor_list');
-    Route::get('/admin/tailor-form', [ManagementController::class, 'tailorForm'])->name('admin.tailor_form');
-    Route::post('/admin/tailorFormAction', [ManagementController::class, 'tailorFormAction'])->name('admin.tailorFormAction');
-    Route::get('/admin/delete-vendor-list/{id}', [ManagementController::class, 'delete_vendor_list'])->name('admin.delete_vendor_list');
-    Route::post('/admin/vendor-status', [ManagementController::class, 'vendorStatus'])->name('admin.vendorStatus');
-    Route::post('/admin/vendor-filter', [ManagementController::class, 'vendorFilter'])->name('admin.vendorFilter');
-    Route::get('/admin/tailor-view/{id}', [ManagementController::class, 'tailor_view'])->name('admin.tailor_view');
-    Route::get('/admin/tailor-edit/{id}', [ManagementController::class, 'tailor_edit'])->name('admin.tailor_edit');
+   //tailor management
+   Route::get('/admin/tailor-list', [ManagementController::class, 'tailor_list'])->name('admin.tailor_list');
+   Route::get('/admin/tailor-form', [ManagementController::class, 'tailorForm'])->name('admin.tailor_form');
+   Route::post('/admin/tailorFormAction', [ManagementController::class, 'tailorFormAction'])->name('admin.tailorFormAction');
+   Route::get('/admin/delete-vendor-list/{id}', [ManagementController::class, 'delete_vendor_list'])->name('admin.delete_vendor_list');
+   Route::post('/admin/vendor-status', [ManagementController::class, 'vendorStatus'])->name('admin.vendorStatus');
+   Route::post('/admin/vendor-filter', [ManagementController::class, 'vendorFilter'])->name('admin.vendorFilter');
+   Route::get('/admin/tailor-view/{id}', [ManagementController::class, 'tailor_view'])->name('admin.tailor_view');
+   Route::get('/admin/tailor-edit/{id}', [ManagementController::class, 'tailor_edit'])->name('admin.tailor_edit');
 
 
     //fabric seller management
@@ -188,7 +195,7 @@ Route::group(['middleware' => ['web', 'checkAdmin']], function () {
     Route::post('/admin/tailorSellerAction', [ManagementController::class, 'tailorSellerAction'])->name('admin.tailorSellerAction');
 
 
-    /********************[Master Route ]*************************/
+	/********************[Master Route ]*************************/
     Route::get('/admin/getSize', [MasterController::class, 'getSize'])->name('getSize');
     Route::any('/admin/addSize/{id?}', [MasterController::class, 'addSize'])->name('addSize');
     Route::post('/admin/changesizeStatus', [MasterController::class, 'changesizeStatus'])->name('changesizeStatus');
@@ -204,7 +211,7 @@ Route::group(['middleware' => ['web', 'checkAdmin']], function () {
     Route::post('/admin/changeSpecialityStatus', [MasterController::class, 'changeSpecialityStatus'])->name('changeSpecialityStatus');
     Route::get('/admin/deleteSpeciality/{id}', [MasterController::class, 'deleteSpeciality'])->name('deleteSpeciality');
 
-    Route::get('/admin/getFebricType', [MasterController::class, 'getFebricType'])->name('getFebricType');
+	Route::get('/admin/getFebricType', [MasterController::class, 'getFebricType'])->name('getFebricType');
     Route::any('/admin/addFebricType/{id?}', [MasterController::class, 'addFebricType'])->name('addFebricType');
     Route::post('/admin/changeFebricTypeStatus', [MasterController::class, 'changeFebricTypeStatus'])->name('changeFebricTypeStatus');
     Route::get('/admin/deleteFebricType/{id}', [MasterController::class, 'deleteFebricType'])->name('deleteFebricType');
@@ -214,7 +221,7 @@ Route::group(['middleware' => ['web', 'checkAdmin']], function () {
     Route::post('/admin/changePlanStatus', [MasterController::class, 'changePlanStatus'])->name('changePlanStatus');
     Route::get('/admin/deletePlan/{id}', [MasterController::class, 'deletePlan'])->name('deletePlan');
 
-    Route::get('/admin/getCategory', [MasterController::class, 'getCategory'])->name('getCategory');
+	Route::get('/admin/getCategory', [MasterController::class, 'getCategory'])->name('getCategory');
     Route::any('/admin/addCategory/{id?}', [MasterController::class, 'addCategory'])->name('addCategory');
     Route::post('/admin/changeCategoryStatus', [MasterController::class, 'changeCategoryStatus'])->name('changeCategoryStatus');
     Route::get('/admin/deleteCategory/{id}', [MasterController::class, 'deleteCategory'])->name('deleteCategory');
@@ -224,10 +231,15 @@ Route::group(['middleware' => ['web', 'checkAdmin']], function () {
     Route::any('/admin/aboutUs', [CmsController::class, 'aboutUs'])->name('aboutUs');
     Route::any('/admin/termsConditions', [CmsController::class, 'termsConditions'])->name('termsConditions');
 
-    /********************[Vendor Document Route ]*************************/
+	/********************[Vendor Document Route ]*************************/
     Route::any('/admin/listDocument', [CmsController::class, 'listDocument'])->name('listDocument');
     Route::get('/admin/deleteDocument/{id}', [CmsController::class, 'deleteDocument'])->name('deleteDocument');
-    Route::post('/admin/documentStatus', [CmsController::class, 'documentStatus'])->name('documentStatus');
+    Route::post('/admin/documentStatus',[CmsController::class,'documentStatus'])->name('documentStatus');
+	
+	/********************[Support Route ]*************************/
+    Route::get('/admin/getTicket', [SupportController::class, 'getTicket']);    
+    Route::any('/admin/replyTicket/{id}', [SupportController::class, 'replyTicket'])->name('replyTicket');    
+    Route::post('/admin/closeTicket', [SupportController::class, 'closeTicket']);    
 });
 
 
@@ -243,3 +255,5 @@ Route::group(['middleware' => ['web', 'checkAdmin']], function () {
 Route::get('/getcountry', [ManagementController::class, 'getcountry'])->name('show.getcountry');
 Route::POST('/getstate ', [ManagementController::class, 'getstate']);
 Route::POST('/getcity ', [ManagementController::class, 'getcity']);
+
+

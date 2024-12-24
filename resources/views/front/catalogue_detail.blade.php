@@ -49,10 +49,30 @@
                     <button class="plus" aria-label="Increase">&plus;</button>
                 </div>
                 <div class="add-to-cart-btn">
-                    <a href="#" type="submit" name="add-to-cart" value="169" class="single_add_to_cart_button button alt">Add to cart</a>
+                    <a href="#" type="submit" name="add-to-cart" class="single_add_to_cart_button button alt" data-bs-toggle="modal" data-bs-target="#book-now-popup">Add to cart</a>
                 </div>
             </div>
 
+            <div class="modal fade" id="book-now-popup" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content"> 			
+                        <div class="modal-body">
+                            <div class="center-txt">
+                                <h2>Do you want to ?</h2>
+                                    <div class="md-txt">
+                                        <h4><a href="javascript:void(0)" class="fab_stich" cat_id="{{$catalogue->id}}" type="fabric">Shop Fabrics for Stiching</a></h4>
+                                        <h4>Or</h4>
+                                        <h4><a href="javascript:void(0)" class="fab_stich" cat_id="{{$catalogue->id}}" type="mesurment">Continue to Add Measurements</a></h4>
+                                    </div>
+                            </div>
+                            <div class="center-btn">
+                                <a href="#">Back to Fabric</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
             <p class="product-meta"><span>Category:</span>{{@$categoryName->category_name}}</p>
             <h6>Free shipping on orders over $50!</h6>
             <ul class="refunds-text">
@@ -68,7 +88,7 @@
 
     <div class="container related-products-list">
         <h1 class="inner-detail-pdc">Related Catalogue</h1>
-   <img src="https://votivelaravel.in/tailor_hub/public/front_assets/images/Line.png">
+   <img src="{{ url('/public') }}/front_assets/images/Line.png">
         <div class="row related-products">
         @if(!empty($relatedcatalogue) && count($relatedcatalogue) > 0)
         @foreach($relatedcatalogue as $index => $value)
@@ -194,6 +214,43 @@
             }
         })();
     </script>
-
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    $(document).on('click','.fab_stich',function(){
+        var catalogue_id=$(this).attr('cat_id');
+        var type    = $(this).attr('type');
+        var customerId = @json($customer_id);
+        if(customerId==0 && type=='mesurment')
+        {
+            Swal.fire({
+                title: "Please login before proceed to Measurement",
+                icon: "info",
+                draggable: true
+                });
+        }
+        else{
+            $.ajax({
+                type: "POST",
+                dataType: "json",
+                url: "<?php echo url('/saveDesignId'); ?>",
+                data: {
+                    _token: '{{ csrf_token() }}',
+                    'catalogue_id': catalogue_id,
+                    'type':type
+                },
+                success: function(data) {
+                    //window.location.href = "<?php echo route('browseFebrics'); ?>"; 
+                    window.location.href = data.redirect_url;
+                    
+                },
+                error: function(xhr) {
+                    console.error('Error storing Catalogue ID:', xhr.responseText);
+                }
+            });
+        }
+    });
+    </script>
+    
+    
     @endsection
 

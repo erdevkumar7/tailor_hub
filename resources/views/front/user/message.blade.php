@@ -20,7 +20,7 @@
                     <div class="card m-0">
                         <!-- Row start -->
                         <div class="row no-gutters">
-                            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-3 col-3">
+                            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-3 col-3 message-list-left">
                                 <div class="users-container">
                                     <div class="chat-search-box">
                                         <div class="input-group">
@@ -96,7 +96,7 @@
                                     </ul>
                                 </div>
                             </div>
-                            <div class="col-xl-8 col-lg-8 col-md-8 col-sm-9 col-9">
+                            <div class="col-xl-8 col-lg-8 col-md-8 col-sm-9 col-9 message-list-right">
                                 <div class="selected-user">
                                     <span>To: <span class="name">Emily Russell</span></span>
                                 </div>

@@ -34,7 +34,10 @@
                     <span>{{$list->postal_code}}</span>
                 </div>
                 <div class="action-buttons">
-                  <span class="set-btn-inner">{{$list->is_primary==1?'':'SET DEFAULT'}}</span>
+                  
+                  @if($list->is_primary==0)
+                  <span class="set-btn-inner setDefault btn btn-outline-success" addr_id={{$list->id}}>{{$list->is_primary==1?'':'SET DEFAULT'}}</span>
+                  @endif
                   <div class="fa-icons-btn">
                   <a href="{{ route('addShipping',$list->id)}}">
                     <span class="edit-btn" title="Edit">
@@ -57,6 +60,33 @@
   </div>
   </div>
 
+  <script>
+  $(document).ready(function () {
+    $(document).on('click', '.setDefault', function () {
+      var addr_id = $(this).attr('addr_id'); // Get the addr_id from the attribute
+      //alert('Hello, addr_id: ' + addr_id);
+
+      $.ajax({
+        url: "<?php echo url('/defaultAddress'); ?>",
+        type: 'POST',
+        dataType: "json",
+        data: {
+          addr_id: addr_id,
+          _token: '{{ csrf_token() }}' // Include CSRF token for Laravel
+        },
+        success: function (response) {
+          alert('Default status updated successfully!');
+          // Optionally refresh or update the UI
+          location.reload();
+        },
+        error: function (xhr, status, error) {
+          console.error('Error:', error);
+          alert('Failed to update the default status.');
+        }
+      });
+    });
+  });
+</script>
 
 
 

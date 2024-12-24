@@ -28,7 +28,7 @@
       </a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" data-bs-toggle="collapse" href="#charts" aria-expanded="false" aria-controls="charts">
+      <a class="nav-link" href="{{url('ticketList')}}" >
 <i class='fas fa-ticket-alt'></i>
         <span class="menu-title">Support Tickets</span>
         <i class="menu-arrow"></i>
@@ -64,7 +64,7 @@
     </li-->
 
         <li class="nav-item">
-      <a class="nav-link" href="{{url('mesurment')}}" >
+      <a class="nav-link" href="{{url('viewMeasurment')}}" >
 <i class="fa fa-balance-scale" aria-hidden="true"></i>
         <span class="menu-title">Measurements</span>
         <i class="menu-arrow"></i>

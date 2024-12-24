@@ -330,13 +330,30 @@ public function vipCustomeredit ($id = ""){
 }
 
 
-public function tailor_list(){
-    // $user_list = User::all();
+public function tailor_list(Request $request){
+  // $user_list = User::all();
+  $query = Vendor::where('vendor_type', '=', 1);
 
-    // echo "<pre>"; print_r($user_list);die;
-    $user_list = Vendor::orderBy('vendor_id', 'desc')->where('vendor_type','=',1)->get();
-    return view('admin.vendor.tailor_list',compact('user_list'));
-    // return view('admin.user_mgmt.customer_list');
+  if ($request->input('action') === 'reset') {
+      return redirect()->route('admin.tailor_list');
+  } elseif ($request->input('action') === 'search' || $request->has('page')) {
+      $customer_type = $request->customer_type;
+      $account_status = $request->account_status;
+
+      if (!empty($customer_type)) {
+          $query->where('vip_type', '=', $customer_type);
+      }
+
+      if (!empty($account_status)) {
+          $query->where('vendor_status', '=', $account_status);
+      }
+  }
+
+  $user_list = $query->orderBy('vendor_id', 'desc')->get();
+
+  // $user_list = Vendor::orderBy('vendor_id', 'desc')->where('vendor_type','=',1)->get();
+  return view('admin.vendor.tailor_list',compact('user_list'));
+  // return view('admin.user_mgmt.customer_list');
 }
 
 public function tailorForm(){
@@ -537,13 +554,31 @@ public function tailor_edit($id = ""){
 }
 
 
-public function fabric_seller_list(){
-//  echo "test";die;
-    // echo "<pre>"; print_r($user_list);die;
-    $user_list = Vendor::orderBy('vendor_id', 'desc')->where('vendor_type','=',2)->get();
-    return view('admin.vendor.fabric_seller_list',compact('user_list'));
-    // return view('admin.user_mgmt.customer_list');
-}
+public function fabric_seller_list(Request $request){
+  //  echo "test";die;
+      $query = Vendor::where('vendor_type', '=', 2);
+
+      if ($request->input('action') === 'reset') {
+          return redirect()->route('admin.fabric_seller_list');
+      } elseif ($request->input('action') === 'search' || $request->has('page')) {
+          $customer_type = $request->customer_type;
+          $account_status = $request->account_status;
+
+          if (!empty($customer_type)) {
+              $query->where('vip_type', '=', $customer_type);
+          }
+
+          if (!empty($account_status)) {
+              $query->where('vendor_status', '=', $account_status);
+          }
+      }
+
+      $user_list = $query->orderBy('vendor_id', 'desc')->get();
+
+      // $user_list = Vendor::orderBy('vendor_id', 'desc')->where('vendor_type','=',2)->get();
+      return view('admin.vendor.fabric_seller_list',compact('user_list'));
+      // return view('admin.user_mgmt.customer_list');
+  }
 
 
 public function fabric_seller_form(){
@@ -647,13 +682,34 @@ public function fabric_seller_form(){
       }
   }
 
-  public function tailor_seller_list(){
-    //  echo "test";die;
-        // echo "<pre>"; print_r($user_list);die;
-        $user_list = Vendor::orderBy('vendor_id', 'desc')->where('vendor_type','=',3)->get();
-        return view('admin.vendor.tailor_seller_list',compact('user_list'));
-        // return view('admin.user_mgmt.customer_list');
-    }
+  public function tailor_seller_list(Request $request)
+  {
+    // echo "test";die;
+    // print_r($request->all());die;
+      $query = Vendor::where('vendor_type', '=', 3);
+
+      if ($request->input('action') === 'reset') {
+          return redirect()->route('admin.tailor_seller_list');
+      } elseif ($request->input('action') === 'search' || $request->has('page')) {
+          $customer_type = $request->customer_type;
+          $account_status = $request->account_status;
+
+          if (!empty($customer_type)) {
+              $query->where('vip_type', '=', $customer_type);
+          }
+
+          if (!empty($account_status)) {
+              $query->where('vendor_status', '=', $account_status);
+          }
+      }
+
+      $user_list = $query->orderBy('vendor_id', 'desc')->get();
+
+      // echo "<pre>";print_r($user_list);die;
+
+      return view('admin.vendor.tailor_seller_list', compact('user_list'));
+  }
+
 
     public function tailor_seller_form(){
         // echo "test";die;
