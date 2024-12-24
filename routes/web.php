@@ -61,6 +61,8 @@ Route::any('/browseFebrics', [HomeController::class, 'browseFebrics'])->name('br
 Route::any('/febricMarchent/{id}', [HomeController::class, 'febricMarchent'])->name('febricMarchent');
 
 Route::any('/exploreProducts', [ProductController::class, 'exploreProducts'])->name('exploreProducts');  //Erdev
+Route::post('/cart/add-product', [CustomerCartController::class, 'productAddToCart'])->name('customer.productAddToCart');  //Erdev
+Route::get('/cart/show-product', [CustomerCartController::class, 'productShowCart'])->name('customer.productShowCart'); //Erdev
 Route::any('/productMarchent/{category_id}', [ProductController::class, 'machentByCategoryId'])->name('product.MachentByCategoryId'); //ErDev
 
 
@@ -98,8 +100,7 @@ Route::group(['middleware' => ['web', 'checkUser']], function () {
     Route::any('/customerProfile', [CustomerController::class, 'updateProfile']);
     Route::post('/profile_update', [CustomerController::class, 'profile_update']);
     Route::get('/customerDashboard', [CustomerController::class, 'customerDashboard']);
-    Route::get('/customerWishlist', [CustomerController::class, 'customerWishList'])->name('customer.wishList'); //Erdev
-    Route::post('/cart/add', [CustomerCartController::class, 'productAddToCart'])->name('customer.productAddToCart');  //Erdev
+    Route::get('/customerWishlist', [CustomerController::class, 'customerWishList'])->name('customer.wishList'); //Erdev   
     Route::any('/addShipping/{id?}', [CustomerController::class, 'addShipping'])->name('addShipping');
     Route::any('/viewAddress', [CustomerController::class, 'viewShippingAddress']);
     Route::any('/shippingAddress', [CustomerController::class, 'shippingAddressList']);

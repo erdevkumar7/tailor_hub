@@ -74,11 +74,7 @@
                                     _token: "{{ csrf_token() }}",
                                 },
                                 success: function(response) {
-                                    if (response.message === undefined) {
-                                        alert('Please logged in to add products to the cart.')
-                                    } else {
-                                        alert(response.message);
-                                    }
+                                    alert(response.message);
                                 },
                                 error: function(xhr) {
                                     alert('Something went wrong. Please try again.');
