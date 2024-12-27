@@ -63,7 +63,7 @@ Route::any('/febricMarchent/{id}', [HomeController::class, 'febricMarchent'])->n
 
 Route::any('/exploreProducts', [ProductController::class, 'exploreProducts'])->name('exploreProducts');  //Erdev
 Route::post('/cart/add-product', [CustomerCartController::class, 'productAddToCart'])->name('customer.productAddToCart');  //Erdev
-Route::get('/cart/show-product', [CustomerCartController::class, 'productShowCart'])->name('customer.productShowCart'); //Erdev
+// Route::get('/cart/show-product', [CustomerCartController::class, 'productShowCart'])->name('customer.productShowCart'); //Erdev
 Route::any('/productMarchent/{category_id}', [ProductController::class, 'machentByCategoryId'])->name('product.MachentByCategoryId'); //ErDev
 
 Route::any('/productDetail/{id}', [HomeController::class, 'productDetail'])->name('productDetail');
@@ -90,6 +90,7 @@ Route::get('/support', [HomeController::class, 'support']);
 Route::get('/order_history', [HomeController::class, 'order_history']);
 
 Route::get('/view_cart', [HomeController::class, 'view_cart']);
+Route::get('/view_cart_product', [HomeController::class, 'view_cart_product'])->name('customer.viewCartProduct');  //Erdev
 
 /****************************[CUSTOMER AUTH START]************************************/
 Route::group(['middleware'=>['web','checkUser']],function(){

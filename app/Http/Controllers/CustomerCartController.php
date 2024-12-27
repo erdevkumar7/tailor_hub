@@ -65,7 +65,9 @@ class CustomerCartController extends Controller
         if (auth('user')->check()) {
             $cart = Cart::where('customer_id', auth('user')->id())->first();
             if ($cart) {
-                $cartItems = CartDetail::where('cart_id', $cart->id)->get();
+				$cartItems = CartDetail::where('cart_id', $cart->id)
+				->with('product') 
+				->get();
             }
         } else {
             $cart = session()->get('guest_cart', []);
@@ -73,15 +75,15 @@ class CustomerCartController extends Controller
                 $product = Product::find($item['product_id']);
                 return [
                     'product_id' => $product->id,
-                    'product_name' => $product->name,
+                    'product_name' => $product->product_name,
                     'quantity' => $item['quantity'],
-                    'price' => $product->price,
+                    'price' => $product->product_price,
                 ];
             });
         }
 
         dd($cartItems);
-        // return view( "front/product_show_cart", compact('cartItems'));
+        return view( "front/user/view__cart_product", compact('cartItems'));
     }
 
 

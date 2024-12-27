@@ -22,14 +22,16 @@ use Validator;
 use DB;
 use Hash;
 
-class HomeController extends Controller{
+class HomeController extends Controller
+{
 
-	public function index(){
+	public function index()
+	{
 
 		$latitude = session('latitude');
-    	$longitude = session('longitude');
+		$longitude = session('longitude');
 
-		return view("front/index",compact('latitude', 'longitude'));
+		return view("front/index", compact('latitude', 'longitude'));
 	}
 	public function storeLocation(Request $request)
 	{
@@ -84,17 +86,15 @@ class HomeController extends Controller{
 		if (Auth::guard("user")->attempt([
 			"email_id" => $request->email,
 			"password" => $request->password
-		]))
-		{
+		])) {
 			// Transfer the session cart to the database cart
 			$this->migrateGuestCartToUser();
 
 			// Redirect to the customer dashboard
 			return redirect()->to('/customerDashboard');
-		}
-		else {
+		} else {
 			// Flash a message and redirect back on failure
-			return back()->with('error','Email  id & Password is incorrect');
+			return back()->with('error', 'Email  id & Password is incorrect');
 		}
 	}
 	public function register()
@@ -114,20 +114,17 @@ class HomeController extends Controller{
 			"password" => "required"
 		]);
 		$user = User::where('email_id', $request->email_id)->first();
-		if($user)
-		{
-			return back()->with('error','Email  id already exist as customer , please login');
-		}
-		else
-		{
+		if ($user) {
+			return back()->with('error', 'Email  id already exist as customer , please login');
+		} else {
 			$user = new User;
 			$user->first_name = trim($request->first_name);
 			$user->email_id = $request->email_id;
 			$user->password = Hash::make($request->password);
 			$user->user_status = "1";
 			$user->customer_type = "0";
-			$user->is_social= "0";
-			$user->is_deleted= "0";
+			$user->is_social = "0";
+			$user->is_deleted = "0";
 			$user->save();
 			$user_id = $user->id;
 			Session::flash('message', 'User Inserted Sucessfully!');
@@ -168,13 +165,11 @@ class HomeController extends Controller{
 			if (Auth::guard("vendor")->attempt([
 				"email" => $request->email,
 				"password" => $request->password
-			]))
-			{
+			])) {
 				return redirect()->to('/vendorsDasboard');
-			}
-			else {
+			} else {
 				// Flash a message and redirect back on failure
-				return back()->with('error','Email  id & Password is incorrect');
+				return back()->with('error', 'Email  id & Password is incorrect');
 			}
 		}
 		return view('vendorlogin');
@@ -193,43 +188,38 @@ class HomeController extends Controller{
 				"password" => "required"
 			]);
 			$user = Vendor::where('email', $request->email_id)->first();
-			if($user)
-			{
-				return back()->with('error','Email  id already exist as Vendor , please login');
-			}
-			else
-			{
+			if ($user) {
+				return back()->with('error', 'Email  id already exist as Vendor , please login');
+			} else {
 				$user = new Vendor;
 				$user->name = trim($request->first_name);
 				$user->email = $request->email_id;
 				$user->password = Hash::make($request->password);
 				$user->vendor_status = "1";
 				$user->vendor_type = "0";
-				$user->is_social= "0";
-				$user->is_deleted= "0";
+				$user->is_social = "0";
+				$user->is_deleted = "0";
 				$user->save();
 				$user_id = $user->id;
 				Session::flash('message', 'User Inserted Sucessfully!');
 
 				return redirect()->to('/vendorLogin');
 			}
-
 		}
 		return view("vendorregistor");
-
 	}
 	public function logout(Request $request)
-    {
-        // Log out the authenticated user
-        Auth::guard('web')->logout();
+	{
+		// Log out the authenticated user
+		Auth::guard('web')->logout();
 		Auth::guard('user')->logout();
 		Auth::guard('vendor')->logout();
 
-        // Clear all session data
-        Session::flush();
-        // Redirect to login or home page
-        return redirect('/login')->with('status', 'You have been logged out successfully.');
-    }
+		// Clear all session data
+		Session::flush();
+		// Redirect to login or home page
+		return redirect('/login')->with('status', 'You have been logged out successfully.');
+	}
 	/**************************[Browse Tailors Start]***********************************/
 	public function searchTailor(Request $request)
 	{
@@ -260,114 +250,111 @@ class HomeController extends Controller{
 			->whereIn('v.vendor_type', [1, 3])
 			->paginate(3);
 
-		return view("front.tailorlist",compact('tailors'));
+		return view("front.tailorlist", compact('tailors'));
 	}
 	public function likeVendor(Request $request)
 	{
 
 		if (Auth::guard('user')->check()) {
 
-			$vendor_id=$request->vendor_id;
-			$like=VendorLike::where('vendor_id',$vendor_id)->where('customer_id',auth('user')->id())->first();
+			$vendor_id = $request->vendor_id;
+			$like = VendorLike::where('vendor_id', $vendor_id)->where('customer_id', auth('user')->id())->first();
 
-			if($like)
-			{
-				DB::table('vendor_likes')->where('customer_id',auth('user')->id())->where('vendor_id',$vendor_id)->delete();
+			if ($like) {
+				DB::table('vendor_likes')->where('customer_id', auth('user')->id())->where('vendor_id', $vendor_id)->delete();
 				return response()->json(['success' => true, 'message' => 'disliked']);
-			}
-			else
-			{
+			} else {
 				//DB::enableQueryLog();
 				$likes = new VendorLike;
-                $likes->customer_id = auth('user')->id();
-                $likes->vendor_id = $vendor_id;
-                $likes->created_at = date('Y-m-d H:i:s');
-                $likes->save();
+				$likes->customer_id = auth('user')->id();
+				$likes->vendor_id = $vendor_id;
+				$likes->created_at = date('Y-m-d H:i:s');
+				$likes->save();
 				//dd(DB::getQueryLog());die();
 			}
 			return response()->json(['success' => true, 'message' => 'liked']);
-		}
-		else{
+		} else {
 			return response()->json(['error' => true, 'message' => 'Failed to update status']);
 		}
 	}
-	public function tailorDetails($id){
+	public function tailorDetails($id)
+	{
 		$customerId = auth('user')->id();
 
 
 		$data['tailor'] = Vendor::query()
-						->where('vendors.vendor_id', $id) // Qualify the column with the table name
-						->when($customerId, function ($query, $customerId) {
-							return $query->leftJoin('vendor_likes as vl', function ($join) use ($customerId) {
-								$join->on('vl.vendor_id', '=', 'vendors.vendor_id')
-									->where('vl.customer_id', '=', $customerId);
-							})
-							->addSelect([
-								'vendors.*', // Include vendor fields
-								'vl.id as like_id', // Include specific fields from likes table
-								DB::raw('IF(vl.id IS NOT NULL, 1, 0) as is_liked') // Conditional `is_liked`
-							]);
-						})
-						->first();
+			->where('vendors.vendor_id', $id) // Qualify the column with the table name
+			->when($customerId, function ($query, $customerId) {
+				return $query->leftJoin('vendor_likes as vl', function ($join) use ($customerId) {
+					$join->on('vl.vendor_id', '=', 'vendors.vendor_id')
+						->where('vl.customer_id', '=', $customerId);
+				})
+					->addSelect([
+						'vendors.*', // Include vendor fields
+						'vl.id as like_id', // Include specific fields from likes table
+						DB::raw('IF(vl.id IS NOT NULL, 1, 0) as is_liked') // Conditional `is_liked`
+					]);
+			})
+			->first();
 
-		return view("front/tailordetails",$data);
+		return view("front/tailordetails", $data);
 	}
-	public function tailorCatalogue($id,$category_id=null)
+	public function tailorCatalogue($id, $category_id = null)
 	{
 		//This function is for view the vendor catalogue from vendor detail page
-		$data['vendor'] = Vendor::where('vendor_id',$id)->first();
-		$data['category'] = Category::where('is_active','1')->where('is_deleted','0')->get();
+		$data['vendor'] = Vendor::where('vendor_id', $id)->first();
+		$data['category'] = Category::where('is_active', '1')->where('is_deleted', '0')->get();
 
 		$data['catalogue'] = DB::table('catalogue as c')
-								->join('category as cat', 'c.category_id', '=', 'cat.category_id')
-								->leftJoinSub(
-									DB::table('catalogue_images as ci')
-										->select('ci.catalogue_id', DB::raw('MIN(ci.catalogue_image) as catalogue_image')) // Fetch one image
-										->groupBy('ci.catalogue_id'),
-									'catalogue_images',
-									'c.id',
-									'=',
-									'catalogue_images.catalogue_id'
-								)
-								->select(
-									'c.*',
-									'cat.category_name',
-									'catalogue_images.catalogue_image' // Include the single image from subquery
-								)
-								->where('c.vendor_id', $id)
-								->where('c.is_active', '1')
-								->where('c.is_deleted', '0')
-								->when($category_id, function ($query, $category_id) {
-									return $query->where('c.category_id', $category_id); // Apply category filter if $category_id is present
-								})
-								->orderBy('c.id', 'desc')
-								->paginate(3);
+			->join('category as cat', 'c.category_id', '=', 'cat.category_id')
+			->leftJoinSub(
+				DB::table('catalogue_images as ci')
+					->select('ci.catalogue_id', DB::raw('MIN(ci.catalogue_image) as catalogue_image')) // Fetch one image
+					->groupBy('ci.catalogue_id'),
+				'catalogue_images',
+				'c.id',
+				'=',
+				'catalogue_images.catalogue_id'
+			)
+			->select(
+				'c.*',
+				'cat.category_name',
+				'catalogue_images.catalogue_image' // Include the single image from subquery
+			)
+			->where('c.vendor_id', $id)
+			->where('c.is_active', '1')
+			->where('c.is_deleted', '0')
+			->when($category_id, function ($query, $category_id) {
+				return $query->where('c.category_id', $category_id); // Apply category filter if $category_id is present
+			})
+			->orderBy('c.id', 'desc')
+			->paginate(3);
 
 
 
 		//echo "<pre>";print_r($data['vendor']);die();
-		return view('front.tailor_catalogue',$data);
+		return view('front.tailor_catalogue', $data);
 	}
 	/**************************[Browse Tailors End]***********************************/
 	public function searchHome(Request $request)
 	{
 		//This function is for home page search
 		$latitude = session('latitude');
-    	$longitude = session('longitude');
+		$longitude = session('longitude');
 	}
 
 	public function exploredesign(Request $request)
 	{
 		// echo "test";die;
-		$data['CategoryType'] = Category::where('is_active','1')->where('is_deleted','0')->get();
+		$data['CategoryType'] = Category::where('is_active', '1')->where('is_deleted', '0')->get();
 		// echo "<Pre>";print_r($data);die;
-		return view("front/explore_design",$data);
+		return view("front/explore_design", $data);
 	}
 	public function tailor_design($id)
 	{
 		// echo "test";die;
-		$data['categoryType'] = Category::where('category_id',$id)->where('is_deleted','0')->first();
-		$data['CategoryTypes'] = Category::where('is_active','1')->where('is_deleted','0')->get();
+		$data['categoryType'] = Category::where('category_id', $id)->where('is_deleted', '0')->first();
+		$data['CategoryTypes'] = Category::where('is_active', '1')->where('is_deleted', '0')->get();
 		// $data['FebricTypes'] = Category::where('is_active','1')->get();
 		// echo "<pre>";print_r($data['CategoryTypes']);die;
 		//$data['fabric_products'] = Product::where('febric_type_id',$id)->get();
@@ -375,81 +362,81 @@ class HomeController extends Controller{
 
 
 		$data['vendors'] = DB::table('vendors')
-					->join('catalogue', 'vendors.vendor_id', '=', 'catalogue.vendor_id')
-					->where('catalogue.category_id', $id)
+			->join('catalogue', 'vendors.vendor_id', '=', 'catalogue.vendor_id')
+			->where('catalogue.category_id', $id)
 
-					->select('vendors.*','catalogue.*',)
-					->distinct()
-					->paginate(10);
+			->select('vendors.*', 'catalogue.*',)
+			->distinct()
+			->paginate(10);
 
 
-	//   $data['catalogue_image'] = DB::table('catalogue_images')->where('catalogue_id',$)
-					// ->appends(['fabric_type_id' => $id]);
-// echo "<pre>";print_r($data['vendors']);die();
+		//   $data['catalogue_image'] = DB::table('catalogue_images')->where('catalogue_id',$)
+		// ->appends(['fabric_type_id' => $id]);
+		// echo "<pre>";print_r($data['vendors']);die();
 
-		return view("front/tailor_design",$data);
+		return view("front/tailor_design", $data);
 	}
 	public function catalogueDetail($id)
 	{
-		$data['customer_id']=0;
+		$data['customer_id'] = 0;
 		if (Auth::guard('vendor')->check()) {
-			
-			$data['customer_id']= auth('user')->id();
-		}
-		
-		$data['catalogue']		= Catalogue::where('id',$id)->first();
-		$data['catalogue_image'] = CatalogueImages::where('catalogue_id',$id)->first();
-		$data['related_image'] = CatalogueImages::where('catalogue_id',$id)->get();
-		
-        $data['vendor'] = Vendor::where('vendor_id',$data['catalogue']->vendor_id)->first();
 
-        
+			$data['customer_id'] = auth('user')->id();
+		}
+
+		$data['catalogue']		= Catalogue::where('id', $id)->first();
+		$data['catalogue_image'] = CatalogueImages::where('catalogue_id', $id)->first();
+		$data['related_image'] = CatalogueImages::where('catalogue_id', $id)->get();
+
+		$data['vendor'] = Vendor::where('vendor_id', $data['catalogue']->vendor_id)->first();
+
+
 		$data['relatedcatalogue'] = DB::table('catalogue')
-						->leftJoin('catalogue_images', function ($join) {
-							$join->on('catalogue.id', '=', 'catalogue_images.catalogue_id')
-									->whereRaw('catalogue_images.id = (SELECT MIN(id) FROM catalogue_images WHERE catalogue_id = catalogue.id)');
-						})
-						->select('catalogue.*', 'catalogue_images.catalogue_image')
-						->limit(5)
-						->where('catalogue.id','!=',$id)
-						->get();
-		
-		return view("front/catalogue_detail",$data);
+			->leftJoin('catalogue_images', function ($join) {
+				$join->on('catalogue.id', '=', 'catalogue_images.catalogue_id')
+					->whereRaw('catalogue_images.id = (SELECT MIN(id) FROM catalogue_images WHERE catalogue_id = catalogue.id)');
+			})
+			->select('catalogue.*', 'catalogue_images.catalogue_image')
+			->limit(5)
+			->where('catalogue.id', '!=', $id)
+			->get();
+
+		return view("front/catalogue_detail", $data);
 	}
 	public function browseFebrics(Request $request)
 	{
-		$data['FebricTypes'] = FebricType::where('is_active','1')->get();
-		return view("front/browse_febric",$data);
+		$data['FebricTypes'] = FebricType::where('is_active', '1')->get();
+		return view("front/browse_febric", $data);
 	}
 	public function febricMarchent($id)
 	{
-		$data['febricType']		 = FebricType::where('febric_type_id',$id)->first();
-		$data['FebricTypes'] = FebricType::where('is_active','1')->get();
+		$data['febricType']		 = FebricType::where('febric_type_id', $id)->first();
+		$data['FebricTypes'] = FebricType::where('is_active', '1')->get();
 		//$data['fabric_products'] = Product::where('febric_type_id',$id)->get();
 
 
 
 		$data['vendors'] = DB::table('vendors')
-					->join('products', 'vendors.vendor_id', '=', 'products.vendor_id')
-					->where('products.febric_type_id', $id)
-					->where('products.product_type', 2)
-					->select('vendors.*','products.*',)
-					->distinct()
-					->paginate(10);
-					//->appends(['fabric_type_id' => $id]);
-//echo "<pre>";print_r($data['vendors']);die();
+			->join('products', 'vendors.vendor_id', '=', 'products.vendor_id')
+			->where('products.febric_type_id', $id)
+			->where('products.product_type', 2)
+			->select('vendors.*', 'products.*',)
+			->distinct()
+			->paginate(10);
+		//->appends(['fabric_type_id' => $id]);
+		//echo "<pre>";print_r($data['vendors']);die();
 
-		return view("front/febric_marchent",$data);
+		return view("front/febric_marchent", $data);
 	}
 	public function productDetail($id)
 	{
-		$data['vendor']			= Product::where('id',$id)->first();
-		$data['category']		= Product::where('id',$id)->first();
-		$data['categoryName']	= Category::where('category_id',$data['category']->category_id)->first();
-		$data['relatedvendor']	= Product::where('vendor_id',$data['vendor']->vendor_id)->get();
-		$data['product'] 		= Product::where('id',$id)->first();
-		$data['productImages'] 	= ProductImage::where('product_id',$id)->get();
-		return view("front/product_detail",$data);
+		$data['vendor']			= Product::where('id', $id)->first();
+		$data['category']		= Product::where('id', $id)->first();
+		$data['categoryName']	= Category::where('category_id', $data['category']->category_id)->first();
+		$data['relatedvendor']	= Product::where('vendor_id', $data['vendor']->vendor_id)->get();
+		$data['product'] 		= Product::where('id', $id)->first();
+		$data['productImages'] 	= ProductImage::where('product_id', $id)->get();
+		return view("front/product_detail", $data);
 	}
 
 	public function customerProfile(Request $request)
@@ -476,32 +463,79 @@ class HomeController extends Controller{
 	{
 		return view("front/user/wish_list");
 	}
-		public function message()
+	public function message()
 	{
 		return view("front/user/message");
 	}
-		public function support()
+	public function support()
 	{
 		return view("front/user/support");
 	}
-	   public function order_history()
+	public function order_history()
 	{
 		return view("front/user/order_history");
 	}
-	   public function shipping_add()
+	public function shipping_add()
 	{
 		return view("front/user/shipping_add");
 	}
-       public function shipping_view()
+	public function shipping_view()
 	{
 		return view("front/user/shipping_view");
 	}
-	       public function view_cart()
+	public function view_cart()
 	{
 		return view("front/user/view_cart");
 	}
 
+	public function view_cart_product()
+	{
+		// $cartItems = [];
+		// if (auth('user')->check()) {
+		// 	$cart = Cart::where('customer_id', auth('user')->id())->first();
+		// 	if ($cart) {
+		// 		$cartItems = CartDetail::where('cart_id', $cart->id)
+		// 			->with('product')
+		// 			->get();
+		// 	}
+		// } else {
+		// 	$cart = session()->get('guest_cart', []);
+		// 	$cartItems = collect($cart)->map(function ($item) {
+		// 		$product = Product::find($item['product_id']);
+		// 		return [
+		// 			'product_id' => $product->id,
+		// 			'product_name' => $product->product_name,
+		// 			'quantity' => $item['quantity'],
+		// 			'price' => $product->product_price,
+		// 		];
+		// 	});
+		// }
 
+		$carts = DB::table('carts')
+			->where('customer_id', auth('user')->id())
+			->join('cart_details', 'carts.id', '=', 'cart_details.cart_id')
+			->leftJoin('products', 'cart_details.product_id', '=', 'products.id')
+			->leftJoin('product_variant', 'cart_details.variant_id', '=', 'product_variant.variant_id')
+			->leftJoin('size_master', 'product_variant.size_id', '=', 'size_master.id')
+			->leftJoin('color_master', 'product_variant.colour_id', '=', 'color_master.color_id')
+			->leftJoin('catalogue', 'cart_details.catalogue_id', '=', 'catalogue.id')
+			->select(
+				'carts.*',
+				'cart_details.*',
+				'products.product_name as product_name',
+				'products.product_image as product_image',
+				'products.final_price as final_price',
+				'products.product_price as product_price',
+				'products.discount as discount',
+				'product_variant.variant_id as variant_id',
+				'size_master.size_name as size_name',
+				'color_master.color_name as color_name',
+				'catalogue.catalogue_name as catalogue_name',
+				'catalogue.start_price as catalogue_price'
+			)
+			->get();
 
-
+		// dd($carts);
+		return view("front/user/view_cart_product", compact('carts'));
+	}
 }
