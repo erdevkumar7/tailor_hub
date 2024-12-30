@@ -19,36 +19,35 @@ use Illuminate\Support\Facades\DB;
 
 class VendorController extends Controller
 {
-    public function vendorDashboard()
-    {
-        //This function is for vendor dashboard
-        if (Auth::guard('vendor')->check()) {
+	public function vendorDashboard()
+	{
+		//This function is for vendor dashboard
+		if (Auth::guard('vendor')->check()) {
 			// Redirect to the user dashboard if authenticated
 			return view("front.vendor.vendor_dash");
-		}
-		else{
+		} else {
 			return redirect()->to('/login');
 		}
-    }
+	}
 	public function updateProfile(Request $request)
 	{
 		//This function is for update vendor profile
 		$vendor = Vendor::where('vendor_id', auth('vendor')->id())->first();
-		$countries = DB::table('master_country')->select('country_id','country_name')->where('country_status',1)->get();
-        $state = DB::table('master_state')->select('state_id','state_name')->where('state_country_id',$vendor->country_id)->get();
-        $city = DB::table('master_city')->select('city_id','city_name')->where('city_state_id',$vendor->state_id)->get();
+		$countries = DB::table('master_country')->select('country_id', 'country_name')->where('country_status', 1)->get();
+		$state = DB::table('master_state')->select('state_id', 'state_name')->where('state_country_id', $vendor->country_id)->get();
+		$city = DB::table('master_city')->select('city_id', 'city_name')->where('city_state_id', $vendor->state_id)->get();
 
-		$speciality = DB::table('speciality_master')->select('speciality_id as id', 'speciality_name as text')->where('is_deleted',0)->where('is_active',1)->get();
+		$speciality = DB::table('speciality_master')->select('speciality_id as id', 'speciality_name as text')->where('is_deleted', 0)->where('is_active', 1)->get();
 
 		$selected = DB::table('tailor_specialitys') // Replace with your pivot or related table
-						->where('vendor_id', auth('vendor')->id())
-						->pluck('speciality_id') // Get only the IDs
-						->toArray();
+			->where('vendor_id', auth('vendor')->id())
+			->pluck('speciality_id') // Get only the IDs
+			->toArray();
 
 		if ($request->isMethod('post')) {
-			
+
 			$name           = $request->name;
-			$last_name		= $request->last_name;	
+			$last_name		= $request->last_name;
 			$email          = $request->email;
 			$gender         = $request->gender;
 			$img            = $request->img;
@@ -58,7 +57,7 @@ class VendorController extends Controller
 			$city_id        = $request->city_id;
 			$business_name  = $request->business_name;
 			$zipcode        = $request->zipcode;
-			$vendor_type	= $request->vendor_type;	
+			$vendor_type	= $request->vendor_type;
 
 			$experience        	= $request->experience;
 			$short_description  = $request->short_description;
@@ -66,10 +65,10 @@ class VendorController extends Controller
 			$selected_ids       = $request->selected_ids;
 
 
-			if($img){
-				$imageName = time().'.'.$request->img->extension();
+			if ($img) {
+				$imageName = time() . '.' . $request->img->extension();
 				$request->img->move(public_path('upload'), $imageName);
-			}else{
+			} else {
 				$imageName = $request->old_image;
 			}
 
@@ -93,14 +92,12 @@ class VendorController extends Controller
 			$vendor->save();
 
 			//now update the speciality
-			if(count($selected_ids)>0)
-			{
-				DB::table('tailor_specialitys')->where('vendor_id',$vendorId)->delete();
+			if (count($selected_ids) > 0) {
+				DB::table('tailor_specialitys')->where('vendor_id', $vendorId)->delete();
 
 				//now save new speciality
-				
-				foreach($selected_ids as $ids)
-				{
+
+				foreach ($selected_ids as $ids) {
 					$spec = new Tailorspecialitys;
 					$spec->speciality_id = $ids;
 					$spec->vendor_id = $vendorId;
@@ -109,12 +106,10 @@ class VendorController extends Controller
 			}
 			Session::flash('message', 'Profile Update Sucessfully!');
 			return redirect()->to('/updateProfile');
-
 		}
-		return view("front.vendor.tailor_profile",compact('vendor','countries','state','city','speciality','selected'));
-		
+		return view("front.vendor.tailor_profile", compact('vendor', 'countries', 'state', 'city', 'speciality', 'selected'));
 	}
-/*
+	/*
     public function ProfileSetting(Request $request)
 	{
 		$vendorId = Auth::guard('vendor')->user()->vendor_id;
@@ -164,52 +159,51 @@ class VendorController extends Controller
         return redirect()->to('/ProfileSetting');
 
     }*/
-    public function vendorProduct()
+	public function vendorProduct()
 	{
 		//This function is for vendor product list
 		$products = DB::table('products')
-						->join('category', 'products.category_id', '=', 'category.category_id')
-						->where('products.vendor_id', auth('vendor')->id())
-						->where('products.is_deleted', '0')
-						->select('products.*', 'category.category_name as category_name')
-						->get();
-		return view("front/vendor/product_list",compact('products'));
+			->join('category', 'products.category_id', '=', 'category.category_id')
+			->where('products.vendor_id', auth('vendor')->id())
+			->where('products.is_deleted', '0')
+			->select('products.*', 'category.category_name as category_name')
+			->get();
+		return view("front/vendor/product_list", compact('products'));
 	}
 
 	public function productStatus(Request $request)
 	{
-		if($request->type=='availability')
-		{
+		if ($request->type == 'availability') {
 			$result =  DB::table('products')
-             ->where('id', $request->id)
-             ->update(
-                 ['is_available' => $request->status]
-             );
-			if ($result){
+				->where('id', $request->id)
+				->update(
+					['is_available' => $request->status]
+				);
+			if ($result) {
 				return response()->json(['success' => true, 'message' => 'Availability updated successfully']);
-			} else{
+			} else {
 				return response()->json(['success' => false, 'message' => 'Failed to update Availability']);
 			}
 		}
-		if($request->type=='is_active')
-		{
+		if ($request->type == 'is_active') {
 			$result =  DB::table('products')
-             ->where('id', $request->id)
-             ->update(
-                 ['is_active' => $request->status]
-             );
-			if ($result){
+				->where('id', $request->id)
+				->update(
+					['is_active' => $request->status]
+				);
+			if ($result) {
 				return response()->json(['success' => true, 'message' => 'Status updated successfully']);
-			} else{
+			} else {
 				return response()->json(['success' => false, 'message' => 'Failed to update status']);
 			}
 		}
 	}
-	public function deleteProduct($id){
+	public function deleteProduct($id)
+	{
 
 		$result = DB::table('products')
-    		->where('id', $id)
-    		->update(['is_deleted' => 1]);
+			->where('id', $id)
+			->update(['is_deleted' => 1]);
 
 		if ($result > 0) {
 			// Successfully updated at least one row
@@ -225,16 +219,16 @@ class VendorController extends Controller
 	{
 		//This function is for add product
 		$category           = $request->category_id;
-        $product_name       = $request->name;
+		$product_name       = $request->name;
 		$product_image	= $request->product_image;
 		$old_product_image = $request->old_product_image;
 		$fab_type			= $request->fab_type;
-        $galary_img         = $request->galary_img;
+		$galary_img         = $request->galary_img;
 		$old_image          = $request->old_image;
-        $product_type       = $request->product_type;
-        $fabric_type        = $request->fabric_type;
-        $gender_type        = $request->gender_type;
-        $product_details    = $request->product_detail;
+		$product_type       = $request->product_type;
+		$fabric_type        = $request->fabric_type;
+		$gender_type        = $request->gender_type;
+		$product_details    = $request->product_detail;
 		$price   			= $request->price;
 		$discount			= $request->discount;
 		$finalPrice			= $request->finalPrice;
@@ -244,19 +238,18 @@ class VendorController extends Controller
 
 
 		$data['product'] = '';
-		if($id)
-		{
-            $data['product'] = Product::where('id', $id)->first();
+		if ($id) {
+			$data['product'] = Product::where('id', $id)->first();
 			$data['productImages'] = ProductImage::where('product_id', $id)->get();
 			$data['ProductVariants'] = ProductVariant::where('product_id', $id)->get()->groupBy('size_id');
-        }
+		}
 		if ($request->isMethod('post')) {
-			if($request->product_id){
+			if ($request->product_id) {
 
-				if($product_image){
-					$imageName = uniqid().'.'.$product_image->extension();
+				if ($product_image) {
+					$imageName = uniqid() . '.' . $product_image->extension();
 					$product_image->move(public_path('Productupload'), $imageName);
-				}else{
+				} else {
 					$imageName = $old_product_image;
 				}
 
@@ -280,17 +273,17 @@ class VendorController extends Controller
 				// //Galary image Update code =========================================================================================
 
 				ProductImage::where('product_id', $request->product_id)->delete();
-				if($galary_img){
-					foreach($galary_img  as $img){
-						$imageName = uniqid().'.'.$img->extension();
+				if ($galary_img) {
+					foreach ($galary_img  as $img) {
+						$imageName = uniqid() . '.' . $img->extension();
 						$img->move(public_path('Productupload'), $imageName);
 						$newProduct_images                  = new ProductImage();
 						$newProduct_images->product_id      = $productUpdate->id;
 						$newProduct_images->product_image   = $imageName;
 						$newProduct_images->save();
 					}
-				}else{
-					foreach($old_image  as $img){
+				} else {
+					foreach ($old_image  as $img) {
 						$newProduct_images                  = new ProductImage();
 						$newProduct_images->product_id      = $productUpdate->id;
 						$newProduct_images->product_image   = $img;
@@ -306,7 +299,7 @@ class VendorController extends Controller
 					$colors = $request->colors[$index] ?? [];
 					foreach ($colors as $colorId) {
 						$newProductVariant = new ProductVariant();
-						$newProductVariant->product_id = $productUpdate->id; 
+						$newProductVariant->product_id = $productUpdate->id;
 						$newProductVariant->size_id = $sizeId;
 						$newProductVariant->colour_id = $colorId;
 						$newProductVariant->save();
@@ -315,13 +308,14 @@ class VendorController extends Controller
 
 				Session::flash('message', 'Product Update Sucessfully!');
 				return redirect()->to('/vendorProduct');
+			} else {
+				// Validate the request
+				// $request->validate([
+				// 	'name' => 'required|string|max:64'
+				// ]);
 
-
-
-			}else{
-
-				if($product_image){
-					$imageName = uniqid().'.'.$product_image->extension();
+				if ($product_image) {
+					$imageName = uniqid() . '.' . $product_image->extension();
 					$product_image->move(public_path('Productupload'), $imageName);
 				}
 
@@ -334,8 +328,8 @@ class VendorController extends Controller
 				$newProduct->product_type    = $product_type;
 				$newProduct->gender_type     = $gender_type;
 				$newProduct->febric_type_id  = $fab_type;
-				$newProduct->product_price	 = $price; 
-				$newProduct->discount		 = $discount; 
+				$newProduct->product_price	 = $price;
+				$newProduct->discount		 = $discount;
 				$newProduct->final_price 	 = $finalPrice;
 				$newProduct->is_available    = '1';
 				$newProduct->is_available    = '1';
@@ -345,8 +339,8 @@ class VendorController extends Controller
 
 				// save product==================================================================================================
 
-				foreach($galary_img  as $img){
-					$imageName = uniqid().'.'.$img->extension();
+				foreach ($galary_img  as $img) {
+					$imageName = uniqid() . '.' . $img->extension();
 					$img->move(public_path('Productupload'), $imageName);
 					$newProduct_images                  = new ProductImage();
 					$newProduct_images->product_id      = $newProduct->id;
@@ -361,7 +355,7 @@ class VendorController extends Controller
 					$colors = $request->colors[$index] ?? [];
 					foreach ($colors as $colorId) {
 						$newProductVariant = new ProductVariant();
-						$newProductVariant->product_id = $newProduct->id; 
+						$newProductVariant->product_id = $newProduct->id;
 						$newProductVariant->size_id = $sizeId;
 						$newProductVariant->colour_id = $colorId;
 						$newProductVariant->save();
@@ -375,17 +369,17 @@ class VendorController extends Controller
 
 			Session::flash('message', 'Product Create Sucessfully!');
 			return redirect()->to('/vendorProduct');
-
 		}
 
-		$data['category'] = DB::table('category')->select('category_id','category_name')->where('is_active',1)->where('is_deleted',0)->get();
-		$data['colors'] = DB::table('color_master')->select('color_id','color_name','color_code')->where('is_active',1)->where('is_deleted',0)->get();
-		$data['sizes'] = DB::table('size_master')->select('id','size_name')->where('is_active',1)->where('is_deleted',0)->get();
-		$data['febricTypes'] = DB::table('febric_type_master')->select('febric_type_id','febric_type_name')->where('is_active',1)->where('is_deleted',0)->get();
-		return view('front.vendor.add_product',$data);
+		$data['category'] = DB::table('category')->select('category_id', 'category_name')->where('is_active', 1)->where('is_deleted', 0)->get();
+		$data['colors'] = DB::table('color_master')->select('color_id', 'color_name', 'color_code')->where('is_active', 1)->where('is_deleted', 0)->get();
+		$data['sizes'] = DB::table('size_master')->select('id', 'size_name')->where('is_active', 1)->where('is_deleted', 0)->get();
+		$data['febricTypes'] = DB::table('febric_type_master')->select('febric_type_id', 'febric_type_name')->where('is_active', 1)->where('is_deleted', 0)->get();
+		return view('front.vendor.add_product', $data);
 	}
 
-	public function finalPrice(Request $request){
+	public function finalPrice(Request $request)
+	{
 		$price = $request->input('price');
 		$discount = $request->input('discount');
 		$finalPrice = $price - ($price * ($discount / 100));
@@ -394,8 +388,8 @@ class VendorController extends Controller
 	public function Catalogue()
 	{
 		//This function is for vendor product list
-		$catalogues = Catalogue::where('is_active','1')->where('is_deleted','0')->get();
-		return view("front/vendor/catalogue_list",compact('catalogues'));
+		$catalogues = Catalogue::where('is_active', '1')->where('is_deleted', '0')->get();
+		return view("front/vendor/catalogue_list", compact('catalogues'));
 	}
 
 	public function addCatalogue(Request $request, $id = null)
@@ -409,64 +403,63 @@ class VendorController extends Controller
 
 
 		$data['catalogue'] = '';
-		if($id)
-		{
-            $data['catalogue'] = Catalogue::where('id', $id)->first();
+		if ($id) {
+			$data['catalogue'] = Catalogue::where('id', $id)->first();
 			$data['catalogue_images'] = CatalogueImages::where('catalogue_id', $id)->get()->toArray();
 
 			//echo "<pre>";print_r($data['catalogue_images']);die();
 
-        }
+		}
 		if ($request->isMethod('post')) {
-			if($request->catalogue_id){
+			if ($request->catalogue_id) {
 
 
-				if($request->hasFile('img1')){
-					$imageName = uniqid().'.'.$request->img1->extension();
+				if ($request->hasFile('img1')) {
+					$imageName = uniqid() . '.' . $request->img1->extension();
 					$request->img1->move(public_path('Productupload'), $imageName);
 
-					DB::table('catalogue_images')->where('id',$request->image1)->delete();
+					DB::table('catalogue_images')->where('id', $request->image1)->delete();
 
 					$cat = new CatalogueImages;
-					$cat->catalogue_id=$request->catalogue_id;
-					$cat->catalogue_image=$imageName;
+					$cat->catalogue_id = $request->catalogue_id;
+					$cat->catalogue_image = $imageName;
 					$cat->save();
 				}
-				
-				if($request->hasFile('img2')){
-					$imageName = uniqid().'.'.$request->img2->extension();
+
+				if ($request->hasFile('img2')) {
+					$imageName = uniqid() . '.' . $request->img2->extension();
 					$request->img2->move(public_path('Productupload'), $imageName);
 
-					DB::table('catalogue_images')->where('id',$request->image2)->delete();
+					DB::table('catalogue_images')->where('id', $request->image2)->delete();
 
 					$cat = new CatalogueImages;
-					$cat->catalogue_id=$request->catalogue_id;
-					$cat->catalogue_image=$imageName;
+					$cat->catalogue_id = $request->catalogue_id;
+					$cat->catalogue_image = $imageName;
 					$cat->save();
 				}
-				if($request->hasFile('img3')){
-					$imageName = uniqid().'.'.$request->img3->extension();
+				if ($request->hasFile('img3')) {
+					$imageName = uniqid() . '.' . $request->img3->extension();
 					$request->img3->move(public_path('Productupload'), $imageName);
 
-					DB::table('catalogue_images')->where('id',$request->image3)->delete();
+					DB::table('catalogue_images')->where('id', $request->image3)->delete();
 
 					$cat = new CatalogueImages;
-					$cat->catalogue_id=$request->catalogue_id;
-					$cat->catalogue_image=$imageName;
+					$cat->catalogue_id = $request->catalogue_id;
+					$cat->catalogue_image = $imageName;
 					$cat->save();
 				}
-				if($request->hasFile('img4')){
-					$imageName = uniqid().'.'.$request->img4->extension();
+				if ($request->hasFile('img4')) {
+					$imageName = uniqid() . '.' . $request->img4->extension();
 					$request->img4->move(public_path('Productupload'), $imageName);
-					
-					DB::table('catalogue_images')->where('id',$request->image4)->delete();
+
+					DB::table('catalogue_images')->where('id', $request->image4)->delete();
 
 					$cat = new CatalogueImages;
-					$cat->catalogue_id=$request->catalogue_id;
-					$cat->catalogue_image=$imageName;
+					$cat->catalogue_id = $request->catalogue_id;
+					$cat->catalogue_image = $imageName;
 					$cat->save();
 				}
-				$updateCatalogue = Catalogue::where('id',$request->catalogue_id)->first();
+				$updateCatalogue = Catalogue::where('id', $request->catalogue_id)->first();
 				$updateCatalogue->vendor_id			= $vendor_id;
 				$updateCatalogue->category_id		= $category_id;
 				$updateCatalogue->catalogue_name	= $catalogue_name;
@@ -481,9 +474,8 @@ class VendorController extends Controller
 
 				Session::flash('message', 'Catalogue Update Sucessfully!');
 				return redirect()->to('/Catalogue');
+			} else {
 
-			}else{
-				
 				$newCatalogue = new Catalogue();
 				$newCatalogue->vendor_id		= $vendor_id;
 				$newCatalogue->category_id		= $category_id;
@@ -498,41 +490,41 @@ class VendorController extends Controller
 
 				$catalogueId = $newCatalogue->id;
 
-				if($request->hasFile('img1')){
-					$imageName = uniqid().'.'.$request->img1->extension();
+				if ($request->hasFile('img1')) {
+					$imageName = uniqid() . '.' . $request->img1->extension();
 					$request->img1->move(public_path('Productupload'), $imageName);
 
 					$cat = new CatalogueImages;
-					$cat->catalogue_id=$catalogueId;
-					$cat->catalogue_image=$imageName;
+					$cat->catalogue_id = $catalogueId;
+					$cat->catalogue_image = $imageName;
 					$cat->save();
 				}
-				
-				if($request->hasFile('img2')){
-					$imageName = uniqid().'.'.$request->img2->extension();
+
+				if ($request->hasFile('img2')) {
+					$imageName = uniqid() . '.' . $request->img2->extension();
 					$request->img2->move(public_path('Productupload'), $imageName);
 
 					$cat = new CatalogueImages;
-					$cat->catalogue_id=$catalogueId;
-					$cat->catalogue_image=$imageName;
+					$cat->catalogue_id = $catalogueId;
+					$cat->catalogue_image = $imageName;
 					$cat->save();
 				}
-				if($request->hasFile('img3')){
-					$imageName = uniqid().'.'.$request->img3->extension();
+				if ($request->hasFile('img3')) {
+					$imageName = uniqid() . '.' . $request->img3->extension();
 					$request->img3->move(public_path('Productupload'), $imageName);
 
 					$cat = new CatalogueImages;
-					$cat->catalogue_id=$catalogueId;
-					$cat->catalogue_image=$imageName;
+					$cat->catalogue_id = $catalogueId;
+					$cat->catalogue_image = $imageName;
 					$cat->save();
 				}
-				if($request->hasFile('img4')){
-					$imageName = uniqid().'.'.$request->img4->extension();
+				if ($request->hasFile('img4')) {
+					$imageName = uniqid() . '.' . $request->img4->extension();
 					$request->img4->move(public_path('Productupload'), $imageName);
-					
+
 					$cat = new CatalogueImages;
-					$cat->catalogue_id=$catalogueId;
-					$cat->catalogue_image=$imageName;
+					$cat->catalogue_id = $catalogueId;
+					$cat->catalogue_image = $imageName;
 					$cat->save();
 				}
 
@@ -542,46 +534,40 @@ class VendorController extends Controller
 		}
 
 		$data['Category']  = Category::where('is_active', '1')->where('is_deleted', '0')->get();
-		return view('front.vendor.add_catalogue',$data);
-
+		return view('front.vendor.add_catalogue', $data);
 	}
 
 	public function catalogueStatus(Request $request)
 	{
-		if($request->type=='is_active')
-		{
+		if ($request->type == 'is_active') {
 			$result =  DB::table('catalogue')
-             ->where('id', $request->id)
-             ->update(
-                 ['is_active' => $request->status]
-             );
-			if ($result){
+				->where('id', $request->id)
+				->update(
+					['is_active' => $request->status]
+				);
+			if ($result) {
 				return response()->json(['success' => true, 'message' => 'Status updated successfully']);
-			} else{
+			} else {
 				return response()->json(['success' => false, 'message' => 'Failed to update status']);
 			}
 		}
 	}
-	public function addDocument(Request $request , $id = null)
+	public function addDocument(Request $request, $id = null)
 	{
 		//This function is for vendor document for verification
 		$vendor_doc  = Documents::where('vendor_id', auth('vendor')->id())->where('is_deleted', '0')->orderBy('id', 'desc')->get();
 
-		if ($request->isMethod('post')) 
-		{
-			if(count($vendor_doc) < 7)
-			{
-				if ($request->has('files')) 
-				{
-					foreach ($request->input('files') as $index => $fileGroup) 
-					{
+		if ($request->isMethod('post')) {
+			if (count($vendor_doc) < 7) {
+				if ($request->has('files')) {
+					foreach ($request->input('files') as $index => $fileGroup) {
 						$file = $request->file("files.$index.docu");
-						$name = $fileGroup['name']; 
-						
+						$name = $fileGroup['name'];
+
 						$imageName = "doc" . time() . uniqid() . '.' . $file->getClientOriginalExtension();
-						
+
 						$file->move(public_path('/documents'), $imageName);
-						
+
 						$document = new Documents();
 						$document->doc_file = $imageName;
 						$document->doc_name = $name;
@@ -592,21 +578,19 @@ class VendorController extends Controller
 					}
 				}
 				Session::flash('message', 'Document added Sucessfully!');
-			}
-			else
-			{
+			} else {
 				Session::flash('message', 'You can only add up to 6 files.');
 			}
-			
+
 			return redirect()->to('/addDocument');
 		}
-		return view('front.vendor.add_document',compact('vendor_doc'));
+		return view('front.vendor.add_document', compact('vendor_doc'));
 	}
 	public function deleteDoc($id)
 	{
 		$result = DB::table('documents')
-    		->where('id', $id)
-    		->update(['is_deleted' => 1]);
+			->where('id', $id)
+			->update(['is_deleted' => 1]);
 
 		if ($result > 0) {
 			// Successfully updated at least one row

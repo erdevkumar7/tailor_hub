@@ -42,7 +42,7 @@
                         <div class="col-md-6">
                            <div class="form-group">
                               <label for="exampleInputName1">Product Name</label>
-                              <input type="text" class="form-control" name="name" id="exampleInputName1" placeholder="Name" value="{{ @$product->product_name }}" required/>
+                              <input type="text" class="form-control" name="name" id="exampleInputName1" placeholder="Name" minlength="4" maxlength="50" value="{{ @$product->product_name }}" required/>
                            </div>
                         </div>
                         <div class="col-md-12">
@@ -60,7 +60,7 @@
                               <input type="file"  name="product_image" class="form-control">
                               <input type="hidden" name="old_product_image" value="{{@$product->product_image}}">
                               @else
-                              <input type="file"  name="product_image" class="form-control">
+                              <input type="file"  name="product_image" class="form-control" required>
                               @endif
                            </div>
                            </div>
